@@ -1,0 +1,241 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+    /* Variables */
+    --baseColor: #FFD43C;
+    --accentColorOne: #999861;
+    --accentColorTwo: #1C8BCC;
+    --backgroundColor: white;
+
+    --leftMargin: 10px;
+    --bottomMargin: 100px;
+}
+
+::-webkit-scrollbar{
+    height: 5px;
+    width: 5px;
+    /* width: 5px !important; */
+}
+
+::-webkit-scrollbar-track{ 
+    box-shadow: inset 0 5px 6px #F1F1F1;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--baseColor);
+
+}
+
+body{
+    background-color: var(--backgroundColor);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+button{
+    margin-top: 10px;
+    border: none;
+    background-color: var(--accentColorOne);
+    color: white;
+    height: 50px;
+    width: 100px;
+    font-size: 18px;
+    /* border-radius: 5px; */
+}
+
+img{
+    height: 100px;
+}
+
+p{
+    font-size: 18px;
+}
+
+@keyframes icon{
+    from{
+        opacity: .0;
+    }
+
+    to{
+        opacity: .8;
+    }
+}
+
+i{
+    color: var(--baseColor);
+    opacity: .8;
+    animation-name: icon;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+}
+
+#iTwo{
+    padding-top: 10px !important;
+}
+
+i:nth-of-type(2){
+    padding-top: 10px !important;
+}
+
+label {
+    /* color: var(--baseColor) !important; */
+    font-size: 16px;
+}
+
+input:focus{
+    border-bottom-color: var(--baseColor) !important;
+}
+
+button:focus{
+    transition: 1s;
+    background-color: var(--accentColorOne);
+    box-shadow: 0px 1px 5px #5b5b5b;
+}
+
+#mission::before{
+    content: 'I';
+    color: var(--baseColor);
+}
+
+#matt::before{
+    content: 'M';
+    color: var(--baseColor);
+}
+
+#david::before{
+    content: 'D';
+    color: var(--baseColor);
+}
+
+#ideator::before{
+    content: 'I';
+    color: var(--baseColor);
+}
+
+.creators h4::before{
+    content: 'C';
+    color: var(--baseColor);
+}
+
+.aboutUs h4::before{
+    content: 'A';
+    color: var(--baseColor);
+}
+
+.create::before{
+    content: 'C';
+    color: var(--baseColor);
+}
+
+.share::before{
+    content: 'S';
+    color: var(--baseColor);
+}
+
+.find::before{
+    content: 'F';
+    color: var(--baseColor);
+}
+
+.mission h3::before{
+    content: 'I';
+    color: var(--baseColor);
+}
+
+@keyframes points{
+    from{
+        opacity: .0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+.mission p{
+    font-size: 25px;
+    margin-bottom: 20px;
+    animation-name: points;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+}
+
+.nav img{
+   margin-top: -10px;
+}
+
+.aboutUs{
+    margin-bottom: var(--bottomMargin);
+}
+
+.footer{
+    color: white;
+    height: 200px;
+    background-color: var(--accentColorOne);
+}
+
+.footer h2{
+    margin-left: var(--leftMargin);
+}
+
+.mission{
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mission h3{
+    margin-top: -25px;
+    margin-bottom: 75px;
+    animation-name: points;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+}
+
+.nav{
+    background-color: var(--baseColor);
+    color: white;
+    height: 84px !important;
+    font-size: 36px;
+    box-shadow: 0px 1px 5px lightslategray;
+    margin-bottom: 0px;
+}
+
+.login{
+    margin-bottom: var(--bottomMargin);
+}
+
+.login h4{
+    margin-bottom: 20px;
+}
+
+.login h4::before{
+    content: 'L';
+    color: var(--baseColor);
+}
+
+.forms{
+    border-left: lightslategray 1px solid;
+}
+
+.content-container{
+    margin-bottom: 150px;
+}
+
+.creators{
+    margin-bottom: var(--bottomMargin);
+}
+
+.signUp h4{
+    margin-bottom: 20px;
+}
+
+.signUp h4::before{
+    content: 'S';
+    color: var(--baseColor);
+}
+
+.matt{
+    margin-bottom: 20px;
+}

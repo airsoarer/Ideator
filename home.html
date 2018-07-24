@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ideator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="home.css">
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="home.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav">
+            <ul class="row">
+                <li class="col s2 hide-on-med-and-up left-align"><button id="navSlide" data-target="slideOut" class="sidenav-trigger"><i class="material-icons">menu</i></button></li>
+                <li class="col s10 m7 offset-m2 left-align"><img src="ideatorLogoYellow.png"></li>
+                <li class="col hide-on-small-only m1 center-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" id="navAccountPhoto" class="circle"></li>
+                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a href="">Matthew Williams II</a></li>
+            </ul>
+        </div>
+        <ul id="slideOut" class="row sidenav">
+            <div class="col s12 navAccountInfo">
+                <li class="col s12 left-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle" id="navAccountPhoto"></li>
+                <li class="col s12 left-align" class="truncate" id="navAccountName" style="margin-top: -5px;">Matthew Williams II</li>
+            </div>
+            <li class="col s12"><a href="account.html" class="waves-effect left-align">Account</a></li>
+            <li class="col s12"><a href="" class="waves-effect left-align">New Idea</a></li>
+            <li class="col s12"><a href="" class="waves-effect left-align">New Project</a></li>
+            <!-- Dropdown -->
+            <ul id="dropdown" class="dropdown-content">
+                <li><a href="techChannel.html" class="truncate center-align">Technology</a></li>
+                <li><a href="photographyChannel.html" class="truncate center-align">Photography</a></li>
+                <li><a href="SchoolProjectsChannel.html" class="truncate center-align">School Projects</a></li>
+                <li><a href="cookingChannel.html" class="truncate center-align">Cooking</a></li>
+                <li><a href="graphicDesignChannel.html" class="truncate center-align">Graphic Design</a></li>
+                <li><a href="musicChannel.html" class="truncate center-align">Music</a></li>
+            </ul>
+            <li class="col s12"><a class="dropdown-trigger waves-effect left-align" data-target="dropdown" href="#">Catagories</a></li>        
+            <!-- <li class="col s12 divider"></li>     -->
+            <li class="center-align sideNavLogo"><img class="center-align" src="ideatorLogoYellow.png"></li>
+        </ul>
+        <div class="row hide-on-small-only catagories">
+            <br>
+            <!-- <div class="cata">
+                <a id="newIdea" href="" class="truncate">Make a New Idea</a>
+            </div>
+            <div class="cata">
+                <a id="newProject" href="" class="truncate">Make a New Project</a>
+            </div> -->
+            <div class="cata">
+                <a id="tech" href="" class="truncate">Technology</a>
+            </div>
+            <div class="cata">
+                <a href="" class="truncate">Photography</a>
+            </div>
+            <div class="cata">
+                <a href="" class="truncate">School Projects</a>
+            </div>
+            <div class="cata">
+                <a href="" class="truncate">Cooking</a>
+            </div>
+            <div class="cata">
+                <a href="" class="truncate">Graphic Design</a>
+            </div>
+            <div class="cata">
+                <a href="" class="truncate">Music</a>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Create project and Idea buttons div -->
+            <div class="col hide-on-small-only m2 createNew">
+                <h4 id="create">reate</h4>
+                <button class="col m12">New Idea</button>
+                <button class="col m12">New Project</button>
+            </div>
+            <!-- Container for Top Ideas -->
+            <div class="col s12 m6">
+                <h4 id="top">op Ideas</h4>
+                <div class="topIdeas">
+                    <!-- Top Idea -->
+                    <div class="card topIdea">
+                        <div class="row user">
+                            <div class="col s2 m1">
+                                <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle left-align">
+                            </div>
+                            <div class="col s10 m9">
+                                <h5 class="col m10 truncate"><a href="">Matthew Williams II</a></h5>
+                            </div>
+                            <div class="col hide-on-small-only m2">
+                                <h6>Idea</h6>
+                            </div>
+                        </div>
+                        <div class="date">
+                            <p class="col m12">Idea created 7/23/18</p>
+                        </div>
+                        <div class="title">
+                            <h5 class="col s12 m12 truncate"><a id="title" href="">Slow Motion Photo Shoot reimagined</a></h5>
+                            <h6 class="col s12 show-on-small-only">Idea</h6>
+                            <h6 class="col s12"><a href="">#Photography</a></h6>
+                        </div>
+                        <div style="margin-left: 10px;" class="idea-content">
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ab, expedita neque incidunt officiis reprehenderit odio molestiae numquam debitis, quae vitae. Non fugit ullam porro dolorem vel error culpa quis!</p>
+                        </div>
+                        <div style="margin-left: 10px;" class="publicAppeal">
+                            <div class="likes">
+                                <button><p>500 <i style="color: #5b5b5b;" class="material-icons">thumb_up</i></p></button>
+                            </div>
+                            <div class="dislikes">
+                                <button><p>2 <i style="color: #5b5b5b;" class="material-icons">thumb_down</i></p></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Idea -->
+                    <div class="card topIdea">
+                        <div class="row user">
+                            <div class="col s2 m1">
+                                <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle left-align">
+                            </div>
+                            <div class="col s10 m9">
+                                <h5 class="col m10 truncate">Matthew Williams II</h5>
+                            </div>
+                            <div class="col hide-on-small-only m2">
+                                <h6>Project</h6>
+                            </div>
+                        </div>
+                        <div class="date">
+                            <p class="col s12 m12">Idea created 7/23/18</p>
+                        </div>
+                        <div class="title">
+                            <h5 class="col s12 m12 truncate"><a id="title" href="">Slow Motion Photo Shoot reimagined</a></h5>
+                            <h6 class="col show-on-small-only s12">Project</h6>
+                            <h6 class="col s12"><a href="">#Photography</a></h6>
+                        </div>
+                        <div style="margin-left: 10px;" class="idea-content">
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ab, expedita neque incidunt officiis reprehenderit odio molestiae numquam debitis, quae vitae. Non fugit ullam porro dolorem vel error culpa quis!</p>
+                        </div>
+                        <div style="margin-left: 10px;" class="publicAppeal">
+                            <div class="likes">
+                                <button><p>453 <i style="color: #5b5b5b;" class="material-icons">thumb_up</i></p></button>
+                            </div>
+                            <div class="dislikes">
+                                <button><p>5 <i style="color: #5b5b5b;" class="material-icons">thumb_down</i></p></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container for Users own Ideas -->
+            <div class="col m4">
+                <!-- My Idea -->
+                <h4 id="public">y Ideas</h4>
+                <div class="card publicIdeas">
+                    <div class="col m12 idea">
+                        <h5><a href="">Cool Website</a></h5>
+                        <p>Some cool website</p>
+                        <div class="publicAppeal">
+                            <div class="likes">
+                                <p>10 <i class="material-icons">thumb_up</i></p>
+                            </div>
+                            <div class="dislikes">
+                                <p>0 <i class="material-icons" style="color:#999861;">thumb_down</i></p>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <p>Private</p>
+                        </div>
+                    </div>
+                    <!-- My Idea -->
+                    <div class="col m12 idea">
+                        <h5><a href="">Cool Website</a></h5>
+                        <p>Some cool website</p>
+                        <div class="publicAppeal">
+                            <div class="likes">
+                                <p>10 <i class="material-icons">thumb_up</i></p>
+                            </div>
+                            <div class="dislikes">
+                                <p>0 <i class="material-icons" style="color:#999861;">thumb_down</i></p>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <p>Private</p>
+                        </div>
+                    </div>
+                    <!-- My Idea -->
+                    <div class="col m12 idea">
+                        <h5><a href="">Cool Website</a></h5>
+                        <p>Some cool website</p>
+                        <div class="publicAppeal">
+                            <div class="likes">
+                                <p>10 <i class="material-icons">thumb_up</i></p>
+                            </div>
+                            <div class="dislikes">
+                                <p>0 <i class="material-icons" style="color:#999861;">thumb_down</i></p>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <p>Public</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
