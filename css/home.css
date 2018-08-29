@@ -71,6 +71,7 @@ i{
 .catagories a{
     background: linear-gradient(to right, #1C8BCC, #7CACFF);
     color: white;
+    height: 100%;
     font-size: 26px;
     text-align: center;
     font-weight: 900;
@@ -207,7 +208,7 @@ i{
 .cata{
     margin-left: 10px;
     width: 300px;
-    height: 100px;
+    height: 75px;
     display: inline-block;
 }
 
