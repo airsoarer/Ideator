@@ -208,7 +208,7 @@ i{
 .cata{
     margin-left: 10px;
     width: 300px;
-/*     height: 75px; */
+    height: 100px !important;
     display: inline-block;
 }
 
