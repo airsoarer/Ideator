@@ -3,6 +3,7 @@
 <head>
     <title>Ideator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
@@ -10,99 +11,87 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="nav">
-            <ul class="row">
-                <li class="col s12 m10 offset-m2 left-align"><img src="../logos/ideatorLogoWhite.png"></li>
-            </ul>
-        </div>
         <div class="row content-container">
-            <div class="col s12 m8 mission">
-                <!-- <h3 id="mission">nnovating and making the world better through Ideas.</h3> -->
-                <!-- <br> -->
-                <div class="row">
-                    <h3 class="col s12 m12">nnovating and making the world better through ideas.</h3>
-                    <i id="iOne" class="col s12 m2 material-icons center-align">create</i>
-                    <p class="col s12 m10 create">reate and innovate your ideas.<p>
-                    <br>
-                    <br>
-                    <i id="iTwo" class="col s12 m2 material-icons center-align">share</i>
-                    <p class="col s12 m10 share">hare you ideas with the rest of the world.</p>
-                    <br>
-                    <br>
-                    <i id="iThree" class="col s12 m2 material-icons center-align">search</i>
-                    <p class="col s12 m10 find">ind the best ideas and make them yours.</p>
+            <div class="outside">
+                <div class="row nav">
+                    <ul>
+                        <li class="col m3 left-align"><img src="../logos/ideatorLogoWhite.png"></li>
+                        <li class="col m1 offset-m5"><a href="landing.html">Home</a></li>
+                        <li class="col m1"><a href="#">Ideas</a></li>
+                        <li class="col m1"><a href="signUp.html">Sign Up</a></li>
+                        <li class="col m1"><a href="login.html">Login</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col s12 m4 forms">
-                <div class="login">
-                    <h4>ogin</h4>
-                    <div>
-                        <label for="lEmail">Email: </label>
-                        <input type="email" id="lEmail">
+                <div class="mission">
+                    <div class="row center-align info">
+                        <h3 class="col s12 m12"><span class="color">I</span>nnovating and making the world better through ideas.</h3>
+                        <p class="col s12 m12"><span class="color">C</span>reate and innovate your ideas.</p>
+                        <p class="col s12 m12"><span class="color">S</span>hare your ideas with the rest of the world.</p>
+                        <p class="col s12 m12"><span class="color">H</span>elp create the world's next big things.</p>
                     </div>
-                    <div>
-                        <label for="lPass">Password: </label>
-                        <input type="password" id="lPass">
-                    </div>
-                    <button id="login">Login</button>
-                </div>
-                <div class="signUp">
-                    <h4>ign Up</h4>
-                    <div>
-                        <label for="name">Name: </label>
-                        <input type="text" id="name">
-                    </div>
-                    <div>
-                        <label for="user">Username: </label>
-                        <input type="text" id="user">
-                    </div>
-                    <div>
-                        <label for="sEmail">Email: </label>
-                        <input type="email" id="sEmail">
-                    </div>
-                    <div>
-                        <label for="sPass">Password: </label>
-                        <input type="password" id="sPass">
-                    </div>
-                    <span>Must be 8 characters or longer</span>
-                    <br>
-                    <button id="signUp">Sign Up</button>
                 </div>
             </div>
         </div>
-        <div class="row aboutUs">
-            <h4 class="center-align">bout Ideator</h4>
-            <div class="col s12 m12 center-align text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi vel repellat, magni natus aperiam quae nesciunt quisquam sint, minima tenetur laboriosam facere voluptatem quo dolore magnam obcaecati iure ipsa delectus.</p>
+        <div class="row info">
+            <div class="col m10 offset-m1 center about">
+                <i class="material-icons">cloud</i>
+                <h4>A place to be creative</h4>
+                <p>Creativity and curiosity is what lead to many of the great things we have in this world today. Ideator is a space for you to create your wildest dreams and plan them out. With the many things we offer, you will be more than able to make your ideas a reality</p>
+            </div>
+            <div class="col m10 offset-m1 center ideaDev">
+                <i class="material-icons">create</i>
+                <h4>Idea Development</h4>
+                <p>We offer many things to help you in creating your idea and bringing it to fruition.</p>
+                <br>
+                <div class="col m4 item">
+                    <i class="material-icons">toggle_on</i>
+                    <h5>Status</h5>
+                    <p>Keep things to yourself and your team by making your ideas and projects private. Or see what other people think by making them public</p>
+                </div>
+                <div class="col m4 item">
+                    <i class="material-icons">attach_file</i>
+                    <h5>File Upload</h5>
+                    <p>You can upload any files you need that contribute to your project.</p>
+                </div>
+                <div class="col m4 item">
+                    <i class="material-icons">local_offer</i>
+                    <h5>Tags</h5>
+                    <p>Tag your ideas with the "Need Help" tag if your looking for someone with a particular skill you need. Tag yourself with the "Willing to Help" tag if you got a skill you want to share.</p>
+                </div>
+                <div class="col m4 item">
+                    <i class="material-icons">forum</i>
+                    <h5>Comments</h5>
+                    <p>Get feed back from other people about your awesome ideas by making them public.</p>
+                </div>
+                <div class="col m4 item">
+                    <i class="material-icons">message</i>
+                    <h5>Group Messaging</h5>
+                    <p>Strategize your plan by talking to your team members using the group messaging feature</p>
+                </div>
+                <div class="col m4 item">
+                    <i class="material-icons">insert_comment</i>
+                    <h5>Direct Messaging</h5>
+                    <p>Get in touch with someone and start an idea together.</p>
+                </div>
+            </div>
+            <div class="col m10 offset-m1 center collab">
+                <i class="material-icons">group</i>
+                <h4>Collaboration</h4>
+                <p>Many of the greatest things we use and enjoy today came from blood, sweat, and tears of different groups of people. Ideator hones in on the aspect of creativity, giving you the ability to work in a collaborative environment to create your teams nex big thing.</p>
             </div>
         </div>
-        <div class="row creators">
-            <h4 class="center-align">reators</h4>
-            <div class="col s12 m6 matt center-align">
-                <div class="img">
-                    <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle">
-                </div>
-                <div class="name">
-                    <h5 id="matt">atthew Williams II</h5>
-                </div>
-                <div class="bio">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur nam quo voluptatibus expedita. Ipsam reiciendis dicta nihil dolor totam autem veniam, quod perferendis enim rem doloribus, odio corrupti vitae? Illum!</p>
-                </div>
+        <div class="row center creators">
+            <h4>About the creators</h4>
+            <div class="col m3 offset-m2 card creator">
+                <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png">
+                <h5>Matthew Williams II</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed minus aliquam expedita. Quam, est dignissimos. Ipsa odio aliquam corporis autem hic facere optio neque officia fugiat vel, consequatur nostrum!</p>
             </div>
-            <div class="col s12 m6 david center-align">
-                <div class="img">
-                    <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle">
-                </div>
-                <div class="name">
-                    <h5 id="david">avid Harrison</h5>
-                </div>
-                <div class="bio">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, neque? Cum fugiat dignissimos suscipit voluptate, accusamus, perferendis labore animi neque quam iusto maxime reprehenderit harum sequi debitis necessitatibus voluptatem itaque?</p>
-                </div>
+            <div class="col m3 offset-m2 card creator">
+                <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png">
+                <h5>David Harrison</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At eius voluptatum voluptatem optio nobis similique rerum, illo atque tempora nostrum dignissimos enim quos laborum laudantium corrupti dolores officiis dolorem. Fuga!</p>
             </div>
-        </div>
-        <div class="footer">
-            <img src="../logos/ideatorLogoSingleWhite.png" alt="">
         </div>
     </div>
 </body>

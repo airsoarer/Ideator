@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ideator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/signUp.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="row content-container">
+            <div class="outside">
+                <div class="row nav">
+                    <ul>
+                        <li class="col m3 left-align"><img src="../logos/ideatorLogoWhite.png"></li>
+                        <li class="col m1 offset-m5"><a href="landing.html">Home</a></li>
+                        <li class="col m1"><a href="#">Ideas</a></li>
+                        <li class="col m1"><a href="signUp.html">Sign Up</a></li>
+                        <li class="col m1"><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="col m10 offset-m1 signup">
+                    <h4>Sign Up</h4>
+                    <div class="col m9">
+                        <input type="text" placeholder="First Name: " id="fname">
+                        <input type="text" placeholder="Last Name: " id="lname">
+                        <input type="text" placeholder="Username: " id="username">
+                        <input type="email" placeholder="Email: " id="email">
+                        <input type="password" placeholder="Password: " id="pass">
+                        <span>Must be 8 characters or longer.</span>
+                    </div>
+                    <div class="col m3">
+                        <textarea type="text" placeholder="My Bio" id="bio" ></textarea>
+                        <label for="file">Upload Profile Photo</label>
+                        <input type="file" id="photo">
+                    </div>
+                    <button id="submit" class="col s3 offset-m5">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
