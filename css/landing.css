@@ -12,6 +12,10 @@
     --bottomMargin: 100px;
 }
 
+.input-field label {
+    color: var(--baseColor) !important;
+}
+
 ::-webkit-scrollbar{
     height: 5px;
     width: 5px;
@@ -32,17 +36,6 @@ body{
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-button{
-    margin-top: 10px;
-    border: none;
-    background-color: var(--accentColorOne);
-    color: white;
-    height: 50px;
-    width: 100px;
-    font-size: 18px;
-    /* border-radius: 5px; */
-}
-
 img{
     height: 100px;
 }
@@ -51,94 +44,13 @@ p{
     font-size: 18px;
 }
 
-@keyframes icon{
-    from{
-        opacity: .0;
-    }
-
-    to{
-        opacity: .8;
-    }
-}
-
-i{
-    color: var(--baseColor);
-    opacity: .8;
-    animation-name: icon;
-    animation-duration: 2s;
-    animation-timing-function: ease-in;
-}
-
-#iTwo{
-    padding-top: 10px !important;
-}
-
-i:nth-of-type(2){
-    padding-top: 10px !important;
-}
-
-label {
-    /* color: var(--baseColor) !important; */
-    font-size: 16px;
-}
-
-input:focus{
-    border-bottom-color: var(--baseColor) !important;
-}
-
-button:focus{
+/* button:focus{
     transition: 1s;
     background-color: var(--accentColorOne);
     box-shadow: 0px 1px 5px #5b5b5b;
-}
+} */
 
-#mission::before{
-    content: 'I';
-    color: var(--baseColor);
-}
-
-#matt::before{
-    content: 'M';
-    color: var(--baseColor);
-}
-
-#david::before{
-    content: 'D';
-    color: var(--baseColor);
-}
-
-#ideator::before{
-    content: 'I';
-    color: var(--baseColor);
-}
-
-.creators h4::before{
-    content: 'C';
-    color: var(--baseColor);
-}
-
-.aboutUs h4::before{
-    content: 'A';
-    color: var(--baseColor);
-}
-
-.create::before{
-    content: 'C';
-    color: var(--baseColor);
-}
-
-.share::before{
-    content: 'S';
-    color: var(--baseColor);
-}
-
-.find::before{
-    content: 'F';
-    color: var(--baseColor);
-}
-
-.mission h3::before{
-    content: 'I';
+.color{
     color: var(--baseColor);
 }
 
@@ -156,7 +68,7 @@ button:focus{
     font-size: 25px;
     margin-bottom: 20px;
     animation-name: points;
-    animation-duration: 2s;
+    animation-duration: .5s;
     animation-timing-function: ease-in;
 }
 
@@ -168,18 +80,13 @@ button:focus{
     margin-bottom: var(--bottomMargin);
 }
 
-.footer{
-    color: white;
-    height: 200px;
-    background-color: var(--accentColorOne);
-}
-
-.footer h2{
-    margin-left: var(--leftMargin);
-}
-
 .mission{
-    height: 800px;
+    background-image: url("http://www.desktop-screens.com/data/out/18/2630044-bulb-wallpapers.png");
+    height: 100vh;
+    /* opacity: .5; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,53 +96,84 @@ button:focus{
     margin-top: -25px;
     margin-bottom: 75px;
     animation-name: points;
-    animation-duration: 2s;
+    animation-duration: .5s;
     animation-timing-function: ease-in;
 }
 
-.nav{
-    background-color: var(--baseColor);
+.outside{
+    background-image: url("http://www.desktop-screens.com/data/out/18/2630044-bulb-wallpapers.png");
+    height: 100vh;
+    /* opacity: .5; */
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
-    height: 84px !important;
+}
+
+.nav{
+    background-color: transparent;
+    color: white;
+    /* height: 84px !important; */
     font-size: 36px;
-    box-shadow: 0px 1px 5px lightslategray;
-    margin-bottom: 0px;
+    /* box-shadow: 0px 1px 10px lightslategray; */
+    margin-bottom: 0px !important;
 }
 
-.login{
-    margin-bottom: var(--bottomMargin);
+.nav ul{
+    margin-bottom: 0px !important;
 }
 
-.login h4{
-    margin-bottom: 20px;
+.nav a{
+    background-color: transparent;
+    color: white;
+    border: none;
+    /* border-bottom: white solid 2px; */
+    font-size: 18px;
 }
 
-.login h4::before{
-    content: 'L';
+.nav ul li img{
+    height: 80px;
+}
+
+.nav a:hover{
     color: var(--baseColor);
-}
-
-.forms{
-    border-left: lightslategray 1px solid;
+    transition-duration: .5s;
+    cursor: pointer;
 }
 
 .content-container{
     margin-bottom: 150px;
 }
 
+.creator{
+    border-radius: 10px;
+    height: 550px;
+}
+
+.card{
+    padding: 0px !important;
+}
+
+.creator img{
+    width: 100%;
+    margin: 0px !important;
+    height: 250px;
+}
+
+.item{
+    margin-top: 50px;
+    height: 250px;
+}
+
+.ideaDev{
+    margin-top: 100px;
+    /* background-color: #cccccc; */
+}
+
+.collab{
+    margin-top: 75px;
+}
+
 .creators{
-    margin-bottom: var(--bottomMargin);
+    margin-top: 150px;
 }
 
-.signUp h4{
-    margin-bottom: 20px;
-}
-
-.signUp h4::before{
-    content: 'S';
-    color: var(--baseColor);
-}
-
-.matt{
-    margin-bottom: 20px;
-}
