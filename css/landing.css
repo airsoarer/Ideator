@@ -81,7 +81,7 @@ p{
 }
 
 .mission{
-    background-image: url("http://www.desktop-screens.com/data/out/18/2630044-bulb-wallpapers.png");
+    background-image: url("../photos/landingBackground.png");
     height: 100vh;
     /* opacity: .5; */
     background-repeat: no-repeat;
@@ -101,7 +101,7 @@ p{
 }
 
 .outside{
-    background-image: url("http://www.desktop-screens.com/data/out/18/2630044-bulb-wallpapers.png");
+    background-image: url("../photos/landingBackground.png");
     height: 100vh;
     /* opacity: .5; */
     background-repeat: no-repeat;
