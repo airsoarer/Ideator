@@ -1,3 +1,7 @@
+html{
+    overflow: scroll;
+}
+
 body{
     /* Variables */
     --baseColor: #FFD43C;
@@ -9,6 +13,16 @@ body{
     --bottomMargin: 100px;
 }
 
+textarea{
+    height: 150px;
+    border: solid 2px #dddddd;
+    border-radius: 5px;
+}
+
+textarea:focus{
+    border-color: var(--baseColor);
+}
+
 @keyframes d{
 
 }
@@ -16,6 +30,20 @@ body{
 i{
     animation-name: d;
     animation-duration: 0s;
+}
+
+#logout{
+    background-color: transparent;
+    border: none;
+}
+
+#ideaModal input{
+    border: solid 2px #dddddd;
+    border-radius: 5px;
+}
+
+#ideaModal input:focus{
+    border-color: var(--baseColor);
 }
 
 #navAccountPhoto{
@@ -44,14 +72,60 @@ i{
     color: var(--baseColor);
 }
 
-#top::before{
-    content: 'T';
-    color: var(--baseColor);
-}
-
 #create::before{
     content: 'C';
     color: var(--baseColor);
+}
+
+#public i{
+    color: black;
+}
+
+li i:hover{
+    color: var(--baseColor);
+}
+
+#public i:hover{
+    color: var(--baseColor);
+    transition-duration: .2s;
+}
+
+.follow i{
+    color: var(--baseColor);
+}
+
+.color{
+    color: var(--baseColor);
+}
+
+.createBtn button{
+    height: 50px;
+    border: solid 2px #dddddd;
+    color: black;
+    background-color: transparent;
+}
+
+.createBtn button:hover{
+    transition-duration: .5s;
+    /* background-color: var(--baseColor); */
+    /* color: white; */
+    border: solid 2px var(--baseColor);
+}
+
+.createBtn button:focus{
+    background-color: var(--baseColor);
+    color: white;
+    border: solid 2px var(--baseColor);
+}
+
+.status p{
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.status{
+    margin-top: 5px;
 }
 
 .createNew a{
@@ -132,6 +206,10 @@ i{
     cursor: pointer;
 }
 
+.imageDiv{
+    margin-right: 20px !important;
+}
+
 .follow .followBtn{
     width: 150px;
     height: 50px;
@@ -167,6 +245,10 @@ i{
 
 .dropdown-content{
     max-height: 250px;
+}
+
+.publicIdeas{
+    height: auto !important;
 }
 
 .modal{
