@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/landing.css">
     <link rel="stylesheet" href="../css/home.css">
 
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -21,9 +22,10 @@
         <div class="nav">
             <ul class="row">
                 <li class="col s2 hide-on-med-and-up left-align"><button id="navSlide" data-target="slideOut" class="sidenav-trigger"><i class="material-icons">menu</i></button></li>
-                <li class="col s10 m7 offset-m2 left-align"><img src="../logos/ideatorLogoYellow.png"></li>
+                <li class="col s10 m6 offset-m2 left-align"><img src="../logos/ideatorLogoYellow.png"></li>
                 <li class="col hide-on-small-only m1 center-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" id="navAccountPhoto" class="circle"></li>
-                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a href="account.html">Matthew Williams II</a></li>
+                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a id="name" href="account.html">Matthew Williams II</a></li>
+                <li class="hide-on-small-only center-align col m1"><button id="logout"><i class="material-icons small">exit_to_app</i></button></li>
             </ul>
         </div>
         <ul id="slideOut" class="row sidenav">
@@ -85,102 +87,49 @@
             <div class="modal" id="ideaModal">
                 <div class="modal-content">
                     <h4>Create a new Project or Idea</h4>
-                    <div class="col m6">
+                    <div class="col m12">
                         <br>
-                        <label for="title">Title</label>
-                        <input type="text" id="title">
+                        <!-- <label for="title">Title</label> -->
+                        <input type="text" placeholder="Title" id="title">
                     </div>
                     <div class="col m6">
                         <br>
-                        <label for="channel">Channel</label>
-                        <input type="text" id="channel" placeholder="ex: #tech, #photography, #misc">
+                        <!-- <label for="channel">Channel</label> -->
+                        <input type="text" id="channel" placeholder="Channel ex: #tech, #photography, #misc">
                     </div>
                     <div class="col s12 m6 modalBtnSetOne">
                         <br>
-                        <button class="col s12 m6" id="idea">Idea</button>
-                        <button class="col s12 m6" id="project">Project</button>
+                        <p>
+                            <label>
+                                <input name="status" type="radio" value="public" id="public" />
+                                <span>Public</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="status" type="radio" value="private" id="private">
+                                <span>Private</span>
+                            </label>
+                        </p>
                     </div>
-                    <div class="col s12 m6 modalBtnSetTwo">
+                    <div class="col s12 m12">
+                        <textarea placeholder="Enter a description" id="description"></textarea>
+                    </div>
+                    <!-- <div class="col s12 m6 modalBtnSetTwo">
                         <br>
                         <button class="col s12 m6" id="publicStatus">Public</button>
                         <button class="col s12 m6" id="privateStatus">Private</button>
-                    </div>
-                    <div class="col m6">
-                        <br>
-                        <br>
+                    </div> -->
+                    <div class="col m6 createBtn">
                         <button class="col m6" id="createIdea">Create</button>
                     </div>
                 </div>
             </div>
             <!-- Container for Top Ideas -->
             <div class="col s12 m8">
-                <h4 id="top">op Ideas</h4>
+                <h4><span class="color">P</span>ublic Ideas</h4>
                 <div class="topIdeas">
-                    <!-- Top Idea -->
-                    <div class="card topIdea">
-                        <div class="row user">
-                            <div class="col s2 m1">
-                                <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle left-align">
-                            </div>
-                            <div class="col s10 m9" style="margin-left: 8px">
-                                <h5 class="col m10 truncate"><a href="">Matthew Williams II</a></h5>
-                            </div>
-                            <div class="col hide-on-small-only m1">
-                                <h6>Idea</h6>
-                            </div>
-                        </div>
-                        <div class="date">
-                            <p class="col m12">Idea created 7/23/18</p>
-                        </div>
-                        <div class="title">
-                            <h5 class="col s12 m12 truncate"><a id="ideaCardTitle" href="">Slow Motion Photo Shoot reimagined</a></h5>
-                            <!-- <h6 class="col s12 show-on-small-only">Idea</h6> -->
-                            <h6 class="col s12"><a href="">#Photography</a></h6>
-                        </div>
-                        <div style="margin-left: 10px;" class="idea-content">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ab, expedita neque incidunt officiis reprehenderit odio molestiae numquam debitis, quae vitae. Non fugit ullam porro dolorem vel error culpa quis!</p>
-                        </div>
-                        <!-- <div style="margin-left: 10px;" class="publicAppeal">
-                            <div class="likes">
-                                <button><p>500 <i style="color: #5b5b5b;" class="material-icons">thumb_up</i></p></button>
-                            </div>
-                            <div class="dislikes">
-                                <button><p>2 <i style="color: #5b5b5b;" class="material-icons">thumb_down</i></p></button>
-                            </div>
-                        </div> -->
-                        <div style="margin-left: 10px" class="follow">
-                            <!-- <button class="lightbulb"><img src="../logos/ideatorLogoSingleYellow.png" alt=""></button> -->
-                            <button class="followBtn">Follow this <pan class="type">Idea</pan></button>
-                        </div>
-                    </div>
-                    <!-- Top Idea -->
-                    <div class="card topIdea">
-                        <div class="row user">
-                            <div class="col s2 m1">
-                                <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle left-align">
-                            </div>
-                            <div class="col s10 m9" style="margin-left: 8px">
-                                <h5 class="col m10 truncate">Matthew Williams II</h5>
-                            </div>
-                            <div class="col hide-on-small-only m2">
-                                <h6>Project</h6>
-                            </div>
-                        </div>
-                        <div class="date">
-                            <p class="col s12 m12">Idea created 7/23/18</p>
-                        </div>
-                        <div class="title">
-                            <h5 class="col s12 m12 truncate"><a id="ideaCardTitle" href="">Slow Motion Photo Shoot reimagined</a></h5>
-                            <!-- <h6 class="col show-on-small-only s12">Project</h6> -->
-                            <h6 class="col s12"><a href="">#Photography</a></h6>
-                        </div>
-                        <div style="margin-left: 10px;" class="idea-content">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ab, expedita neque incidunt officiis reprehenderit odio molestiae numquam debitis, quae vitae. Non fugit ullam porro dolorem vel error culpa quis!</p>
-                        </div>
-                        <div style="margin-left: 10px" class="follow">
-                            <button class="followBtn">Follow this <pan class="type">Project</pan></button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- Container for Users own Ideas -->
@@ -188,54 +137,8 @@
                 <!-- My Idea -->
                 <h4 id="public">y Ideas <a href="#"><i class= "material-icons">folder</i></a> <a class= "modal-trigger" href="#ideaModal"><i class= "material-icons">add</i></a></h4>
                 <!-- <a class="col m10" href="">View my Ideas</a> -->
-                <div class="card publicIdeas">
-                    <div class="col m12 idea">
-                        <h5><a href="">Cool Website</a></h5>
-                        <p>Some cool website</p>
-                        <div class="publicAppeal">
-                            <!-- <div class="likes">
-                                <p>10 <i class="material-icons">thumb_up</i></p>
-                            </div>
-                            <div class="dislikes">
-                                <p>0 <i class="material-icons" style="color:#999861;">thumb_down</i></p>
-                            </div> -->
-                        </div>
-                        <div class="status">
-                            <p>Private</p>
-                        </div>
-                    </div>
-                    <!-- My Idea -->
-                    <div class="col m12 idea">
-                        <h5><a href="">Cool Website</a></h5>
-                        <p>Some cool website</p>
-                        <!-- <div class="publicAppeal">
-                            <div class="likes">
-                                <p>10 <i class="material-icons">thumb_up</i></p>
-                            </div>
-                            <div class="dislikes">
-                                <p>0 <i class="material-icons" style="color:#999861;">thumb_down</i></p>
-                            </div>
-                        </div> -->
-                        <div class="status">
-                            <p>Private</p>
-                        </div>
-                    </div>
-                    <!-- My Idea -->
-                    <div class="col m12 idea">
-                        <h5><a href="">Cool Website</a></h5>
-                        <p>Some cool website</p>
-                        <!-- <div class="publicAppeal">
-                            <div class="likes">
-                                <p>10 <i class="material-icons">thumb_up</i></p>
-                            </div>
-                            <div class="dislikes">
-                                <p>0 <i class="material-icons" style="color:#999861;">thumb_down</i></p>
-                            </div>
-                        </div> -->
-                        <div class="status">
-                            <p>Public</p>
-                        </div>
-                    </div>
+                <div class="publicIdeas" id="ideasDiv">
+                    <h4 class="center" style="display: none;" id="noIdea">You have no Ideas right now.</h4>
                 </div>
             </div>
         </div>
