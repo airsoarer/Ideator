@@ -142,15 +142,6 @@ li i:hover{
     /* margin-top: 25px; */
 }
 
-.catagories a{
-    background: linear-gradient(to right, #1C8BCC, #7CACFF);
-    color: white;
-/*     height: 100%; */
-    font-size: 26px;
-    text-align: center;
-    font-weight: 900;
-}
-
 .nav button{
     background-color: transparent;
     margin-top: 20px;
@@ -300,7 +291,7 @@ li i:hover{
     white-space: nowrap;
     width: 100%;
     height: 85px !important;
-    box-shadow: inset 0px 1px 5px lightslategray;
+    box-shadow: inset 0px 1px 5px lightslategray;   
 }
 
 .cata{
@@ -308,6 +299,16 @@ li i:hover{
     width: 300px;
     height: 100px !important;
     display: inline-block;
+}
+
+.cata a{
+    /* width: 100% !important; */
+    height: 100px;
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 24px;
+    text-align: center;
 }
 
 .sideNavLogo{
