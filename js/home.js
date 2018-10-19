@@ -43,6 +43,7 @@
         var publicRef = firebase.database().ref("Ideas");
         publicRef.on("child_added", (snapshot) => {
             var data = snapshot.val();
+            var key = snapshot.key;
 
             // Container div
             var div = document.createElement("div");
@@ -163,9 +164,38 @@
             $(buttonsDiv).css("margin-left", "10px");
             div.appendChild(buttonsDiv);
 
+            // light bulb
+            var lightbulbButton = document.createElement("button");
+            lightbulbButton.classList.add("like");
+            lightbulbButton.id = key;
+            buttonsDiv.appendChild(lightbulbButton);
+
+            // img
+            var bulb = document.createElement("img");
+            bulb.src = "../photos/lightbulb_off.png";
+            bulb.classList.add("bulb");
+            lightbulbButton.appendChild(bulb);
+
+            // Check if user liked this idea and make like on and disabled
+            var dbCheck = firebase.database().ref("Users/" + uid + "/Info/Liked");
+            dbCheck.on("value", (snapshot) => {
+                var data = snapshot.val();
+                // console.log(data);
+
+                for(var i = 0; i < data.length; i++){
+                    // console.log(data[i]);
+                    if(key === data[i]){
+                        // console.log(key, data[i])
+                        $(lightbulbButton).attr('disabled', true);
+                        bulb.src = "../photos/lightbulb_on.png";
+                    }
+                }
+            });
+
             // Comment a
             var commentA = document.createElement("a");
-            commentA.src = "#";
+            commentA.href = "#";
+            commentA.classList.add("commentA");
             buttonsDiv.appendChild(commentA);
 
             // Comment i
@@ -295,6 +325,29 @@
         $('#logout').on("click", logout);
         $(document.body).on("click", ".stickyChannelBtn", getData);
         $(document.body).on("click", ".channelBtn", changeChannel);
+        $(document.body).on("click", ".like", like); 
+    }
+
+    function like(){
+        var id = $(this).attr("id");
+        $(this).prop("disabled", true);
+        $(this).children('.bulb').attr("src", "../photos/lightbulb_on.png");
+
+        var ref2 = firebase.database().ref('Ideas/' + id).child('Lights');
+        ref2.transaction((Lights) => {
+            if(!Lights){
+                Lights = Lights + 1;
+            }
+
+            var db = firebase.database().ref('Users/' + uid + '/Info').child('Liked');
+            db.transaction((Likes) => {
+                Likes.push(id);
+
+                return Likes;
+            });
+
+            return Lights;
+        });
     }
 
     function getData(){
@@ -304,6 +357,7 @@
         var publicRef = firebase.database().ref("Ideas");
         publicRef.on("child_added", (snapshot) => {
             var data = snapshot.val();
+            var key = snapshot.key;
 
             // Container div
             var div = document.createElement("div");
@@ -424,6 +478,34 @@
             $(buttonsDiv).css("margin-left", "10px");
             div.appendChild(buttonsDiv);
 
+            // light bulb
+            var lightbulbButton = document.createElement("button");
+            lightbulbButton.classList.add("like");
+            lightbulbButton.id = key;
+            buttonsDiv.appendChild(lightbulbButton);
+
+            // img
+            var bulb = document.createElement("img");
+            bulb.src = "../photos/lightbulb_off.png";
+            bulb.classList.add("bulb");
+            lightbulbButton.appendChild(bulb);
+
+            // Check if user liked this idea and make like on and disabled
+            var dbCheck = firebase.database().ref("Users/" + uid + "/Info/Liked");
+            dbCheck.on("value", (snapshot) => {
+                var data = snapshot.val();
+                // console.log(data);
+
+                for(var i = 0; i < data.length; i++){
+                    // console.log(data[i]);
+                    if(key === data[i]){
+                        // console.log(key, data[i])
+                        $(lightbulbButton).attr('disabled', true);
+                        bulb.src = "../photos/lightbulb_on.png";
+                    }
+                }
+            });
+
             // Comment a
             var commentA = document.createElement("a");
             commentA.src = "#";
@@ -458,10 +540,11 @@
         var ref = firebase.database().ref("Ideas");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
+            var key = snapshot.key;
             // console.log(data);   
 
             if(data.Channel === channelTemp){
-                console.log(channelTemp, data.Channel);
+                // console.log(channelTemp, data.Channel);
 
                 // Container div
                 var div = document.createElement("div");
@@ -582,6 +665,34 @@
                 $(buttonsDiv).css("margin-left", "10px");
                 div.appendChild(buttonsDiv);
 
+                // light bulb
+                var lightbulbButton = document.createElement("button");
+                lightbulbButton.classList.add("like");
+                lightbulbButton.id = key;
+                buttonsDiv.appendChild(lightbulbButton);
+
+                // img
+                var bulb = document.createElement("img");
+                bulb.src = "../photos/lightbulb_off.png";
+                bulb.classList.add("bulb");
+                lightbulbButton.appendChild(bulb);
+
+                // Check if user liked this idea and make like on and disabled
+                var dbCheck = firebase.database().ref("Users/" + uid + "/Info/Liked");
+                dbCheck.on("value", (snapshot) => {
+                    var data = snapshot.val();
+                    // console.log(data);
+
+                    for(var i = 0; i < data.length; i++){
+                        // console.log(data[i]);
+                        if(key === data[i]){
+                            // console.log(key, data[i])
+                            $(lightbulbButton).attr('disabled', true);
+                            bulb.src = "../photos/lightbulb_on.png";
+                        }
+                    }
+                });
+
                 // Comment a
                 var commentA = document.createElement("a");
                 commentA.src = "#";
@@ -649,6 +760,7 @@
                 Description:description,
                 CreationDate:date,
                 Creator:uid,
+                Lights:0,
             }).then(function(){
                 ref.push({
                     Title:title,
