@@ -23,6 +23,11 @@ textarea{
     border-radius: 5px;
 }
 
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #000000 !important;
+    text-align: center;
+}
+
 textarea:focus{
     border-color: var(--baseColor);
 }

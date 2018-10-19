@@ -13,6 +13,14 @@ body{
     --bottomMargin: 100px;
 }
 
+p{
+    font-weight: 100;
+}
+
+button{
+    cursor: pointer;
+}
+
 textarea{
     height: 150px;
     border: solid 2px #dddddd;
@@ -30,6 +38,18 @@ textarea:focus{
 i{
     animation-name: d;
     animation-duration: 0s;
+}
+
+#none{
+    display: none;
+}
+
+#navSlide{
+    border: none;
+}
+
+#navSlide:hover{
+    transition-duration: 1s;
 }
 
 #logout{
@@ -56,6 +76,17 @@ i{
     font-size: 18px;
     margin-top: 25px;
     text-transform: capitalize;
+}
+
+#channelCreate{
+    color: black;
+    font-size: 24px;
+}
+
+#createDropdown li{
+    list-style-type: none;
+    text-align: center;
+    font-size: 18px;
 }
 
 #navAccountName a{
@@ -96,6 +127,7 @@ li i:hover{
 
 .color{
     color: var(--baseColor);
+    font-weight: 700;
 }
 
 .createBtn button{
@@ -159,7 +191,7 @@ li i:hover{
 
 .user a{
     color: black;
-}
+}   
 
 .modalBtnSetOne button{
     box-shadow: 0 1px 2px lightslategray;
@@ -266,15 +298,6 @@ li i:hover{
     box-shadow: 0px 1px 5px lightslategray;
 }
 
-.likes{
-    display: inline-block;
-}
-
-.dislikes{
-    display: inline-block;
-    margin-left: 20px;
-}
-
 .idea{
     margin-bottom: 20px !important;
 }
@@ -295,20 +318,22 @@ li i:hover{
 }
 
 .cata{
+    margin-top: -20px;
     margin-left: 10px;
     width: 300px;
-    height: 100px !important;
+    height: 100% !important;
     display: inline-block;
 }
 
-.cata a{
-    /* width: 100% !important; */
-    height: 100px;
+.cata button{
+    width: 100% !important;
+    height: 100% !important;
     background-color: white;
     color: black;
     border: none;
     font-size: 24px;
     text-align: center;
+    font-weight: 100;
 }
 
 .sideNavLogo{
