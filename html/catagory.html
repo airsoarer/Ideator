@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     <link rel="stylesheet" href="../css/landing.css">
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/channel.css">
 
+    <!-- Scripts -->
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -16,38 +18,23 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="../js/home.js"></script>
+    <script src="../js/channel.js"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="row wrapper">
         <div class="nav">
             <ul class="row">
                 <li class="col s2 hide-on-med-and-up left-align"><button id="navSlide" data-target="slideOut" class="sidenav-trigger"><i class="material-icons">menu</i></button></li>
                 <li class="col s10 m6 offset-m2 left-align"><img src="../logos/ideatorLogoYellow.png"></li>
                 <li class="col hide-on-small-only m1 center-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" id="navAccountPhoto" class="circle"></li>
-                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a id="name" title="Account Page" href="account.html"></a></li>
-                <li class="hide-on-small-only center-align col m1"><button title="Logout" id="logout"><i class="material-icons small">exit_to_app</i></button></li>
+                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a id="name" href="account.html"></a></li>
+                <li class="hide-on-small-only center-align col m1"><button id="logout"><i class="material-icons small">exit_to_app</i></button></li>
             </ul>
         </div>
-        <ul id="slideOut" class="row sidenav">
-            <div class="col s12 navAccountInfo">
-                <li class="col s12 left-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle" id="navAccountPhoto"></li>
-                <li class="col s12 left-align" class="truncate" id="navAccountName" style="margin-top: -5px;">Matthew Williams II</li>
-            </div>
-            <li class="col s12"><a href="" class="waves-effect left-align">My Ideas and Projects</a></li>
-            <li class="col s12"><a href="#ideaModal" class="waves-effect left-align modal-trigger">New Idea or Project</a></li>
-            <!-- Dropdown -->
-            <ul id="dropdown" class="dropdown-content">
-                
-            </ul>
-            <li class="col s12"><a class="dropdown-trigger waves-effect left-align" data-target="dropdown" href="#">Catagories</a></li>    
-            <li class="col s12"><a href="account.html" class="waves-effect left-align">Account</a></li>    
-            <!-- <li class="col s12 divider"></li>     -->
-            <li class="center-align sideNavLogo"><img class="center-align" src="../logos/ideatorLogoYellow.png"></li>
-        </ul>
         <div class="row hide-on-small-only catagories">
             <br>
             <div class="cata">
-                <button class="truncate stickyChannelBtn">All Ideas</button>
+                <a href="home.html" class="truncate">Home</a>
             </div>
         </div>
         <div class="row">
@@ -99,7 +86,7 @@
             <!-- Container for Users own Ideas -->
             <div class="col hide-on-small-only m4">
                 <!-- My Idea -->
-                <h4 id="public">y Ideas <a href="#" title="View my Ideas"><i class= "material-icons">folder</i></a> <a title="Create an Idea" class= "modal-trigger" href="#ideaModal"><i class= "material-icons">add</i></a></h4>
+                <h4 id="public">y Ideas <a href="#"><i class= "material-icons">folder</i></a> <a class= "modal-trigger" href="#ideaModal"><i class= "material-icons">add</i></a></h4>
                 <!-- <a class="col m10" href="">View my Ideas</a> -->
                 <div class="publicIdeas" id="ideasDiv">
                     <h4 class="center" style="display: none;" id="noIdea">You have no Ideas right now.</h4>
