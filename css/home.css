@@ -125,9 +125,35 @@ li i:hover{
     color: var(--baseColor);
 }
 
+.followBtn{
+    margin-bottom: 15px !important;
+}
+
 .color{
     color: var(--baseColor);
     font-weight: 700;
+}
+
+.commentA{
+    padding-right: 10px;
+    margin-left: -10px;
+}
+
+.follow{
+    padding-top: 20px;
+    margin-left: -5px !important;
+}
+
+.like{
+    height: 50px;
+    border: none;
+    width: 10px;
+    margin-bottom: -10px !important;
+}
+
+.like img{
+    height: 100%;
+    margin-bottom: -10px !important;
 }
 
 .createBtn button{
