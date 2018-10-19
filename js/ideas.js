@@ -157,5 +157,22 @@
 
             $('.ideas').append(div);
         });
+
+        // Get Catagories
+        var cataRef = firebase.database().ref("Channels");
+        cataRef.on("value", (snapshot) => {
+            var data = snapshot.val();
+            // console.log(data);
+
+            for(var i = 0; i < data.length; i++){
+                // Create Button
+                var btn = document.createElement("button");
+                btn.textContent = data[i];
+                btn.classList.add("cata");
+
+                // Append
+                $('.catas').append(btn);
+            }
+        });
     }
 })();

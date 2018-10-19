@@ -24,12 +24,21 @@
         auth.catch((err) => {
             var errCode = err.code;
             if(errCode === 'auth/wrong-password'){
-                $('#pass').css('border-color', 'red');
+                $('#pass').css('border-color', 'red !important');
+                $('#wrongPass').css("display", 'block');
                 return;
             }
 
             if(errCode === 'auth/invalid-email'){
-                $('#email').css('border-color', 'red');
+                $('#email').css('border-color', 'red !important');
+                $('#wrongEmail').css('display', 'block');
+                return;
+            }
+
+            if(errCode === 'auth/user-not-found'){
+                $('#email').css('border-color', 'red !important');
+                $('#pass').css('border-color', 'red !important');
+                $('#notFount').css('display', 'block');
                 return;
             }
         })
