@@ -47,6 +47,15 @@
                     Username:username,
                     Email:email,
                     Bio:bio,
+                    Following: {
+                        Ideas:{
+                            0:"",
+                        },
+
+                        Users:{
+                            0:"",
+                        }
+                    }
                 }).then(function(){
                     // Get storage ref
                     var storageRef = firebase.storage().ref('Users/' + uid + "/info/profilePhoto");
