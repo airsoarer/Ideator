@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ideator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/comment.css">
+    <link rel="icon" href="../logos/ideatorLogoSingleYellow.png">
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="../js/comment.js"></script>
+</head>
+<body>
+    <div class="row wrapper">
+        <div class="nav">
+            <ul class="row">
+                <li class="col s2 hide-on-med-and-up left-align"><button id="navSlide" data-target="slideOut" class="sidenav-trigger"><i class="material-icons">menu</i></button></li>
+                <li class="col s10 m6 offset-m2 left-align"><a href="home.html"><img src="../logos/ideatorLogoYellow.png"></a></li>
+                <li class="col hide-on-small-only m1 center-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" id="navAccountPhoto" class="circle"></li>
+                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a id="name" title="Account Page" href="account.html"></a></li>
+                <li class="hide-on-small-only center-align col m1"><button title="Logout" id="logout"><i class="material-icons small">exit_to_app</i></button></li>
+            </ul>
+        </div>
+            <div class="row col s12 m12 commentWindow">
+
+            </div>
+            <div class="col s12 m12 write">
+                <div class="col s10 m11 input">
+                    <textarea id="comment" placeholder="Write your comment here!" cols="30" rows="5"></textarea>
+                </div>
+                <div class="col s2 m1 button">
+                    <button id="post">Post</button>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
