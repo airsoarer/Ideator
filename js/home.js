@@ -11,6 +11,7 @@
 
     // Get user uid from localStorage
     uid = localStorage.getItem('uid');
+    console.log(uid);
 
     // Get date
     var mm = new Date().getMonth();
@@ -182,19 +183,21 @@
                 var data = snapshot.val();
                 // console.log(data);
 
-                for(var i = 0; i < data.length; i++){
-                    // console.log(data[i]);
-                    if(key === data[i]){
-                        // console.log(key, data[i])
-                        $(lightbulbButton).attr('disabled', true);
-                        bulb.src = "../photos/lightbulb_on.png";
+                if(data != null){
+                    for(var i = 0; i < data.length; i++){
+                        // console.log(data[i]);
+                        if(key === data[i]){
+                            // console.log(key, data[i])
+                            $(lightbulbButton).attr('disabled', true);
+                            bulb.src = "../photos/lightbulb_on.png";
+                        }
                     }
                 }
             });
 
             // Comment a
             var commentA = document.createElement("a");
-            commentA.href = "#";
+            commentA.href = "../html/comment.html?key=" + key;
             commentA.classList.add("commentA");
             buttonsDiv.appendChild(commentA);
 
@@ -208,9 +211,23 @@
             // Follow btn
             var followBtn = document.createElement("button");
             followBtn.classList.add("followBtn");
-            followBtn.id = data.Creator;
+            followBtn.id = key;
             followBtn.textContent = "Follow this Project"
             buttonsDiv.appendChild(followBtn);
+
+            firebase.database().ref("Users/" + uid + "/Info/Following/Ideas").on("value", (snapshot) => {
+                var data = snapshot.val();
+                // console.log(data);
+                if(data != null){
+                    for(var i = 0; i < data.length; i++){
+                        // console.log(key, data[i]);
+                        if(key === data[i]){
+                            $(followBtn).css("background-color", "#FFD43C");
+                            $(followBtn).css("color", "#ffffff");
+                        }
+                    }
+                }
+            });
 
             $('.topIdeas').append(div);
         });
@@ -323,9 +340,22 @@
         $('.modal-trigger').on('click', ideaModal);
         $('#createIdea').on('click', createIdea);
         $('#logout').on("click", logout);
+        $(document.body).on("click", ".followBtn", follow);
         $(document.body).on("click", ".stickyChannelBtn", getData);
         $(document.body).on("click", ".channelBtn", changeChannel);
         $(document.body).on("click", ".like", like); 
+    }
+
+    function follow(){
+        var id = $(this).attr("id");
+        $(this).prop("disabled", true);
+        $(this).css('background-color', '#FFD43C');
+        $(this).css("color", "#ffffff");
+        
+        firebase.database().ref("Users/" + uid + "/Info/Following").child("Ideas").transaction((Ideas) => {
+            Ideas.push(id);
+            return Ideas;
+        });
     }
 
     function like(){
@@ -341,8 +371,8 @@
 
             var db = firebase.database().ref('Users/' + uid + '/Info').child('Liked');
             db.transaction((Likes) => {
+                // console.log(Likes);
                 Likes.push(id);
-
                 return Likes;
             });
 
@@ -524,6 +554,20 @@
             followBtn.id = data.Creator;
             followBtn.textContent = "Follow this Project"
             buttonsDiv.appendChild(followBtn);
+
+            firebase.database().ref("Users/" + uid + "/Info/Following/Ideas").on("value", (snapshot) => {
+                var data = snapshot.val();
+                // console.log(data);
+                if(data != null){
+                    for(var i = 0; i < data.length; i++){
+                        // console.log(key, data[i]);
+                        if(key === data[i]){
+                            $(followBtn).css("background-color", "#FFD43C");
+                            $(followBtn).css("color", "#ffffff");
+                        }
+                    }
+                }
+            });
 
             $('.topIdeas').append(div);
         });
@@ -712,15 +756,30 @@
                 followBtn.textContent = "Follow this Project"
                 buttonsDiv.appendChild(followBtn);
 
+                firebase.database().ref("Users/" + uid + "/Info/Following/Ideas").on("value", (snapshot) => {
+                    var data = snapshot.val();
+                    // console.log(data);
+                    if(data != null){
+                        for(var i = 0; i < data.length; i++){
+                            // console.log(key, data[i]);
+                            if(key === data[i]){
+                                $(followBtn).css("background-color", "#FFD43C");
+                                $(followBtn).css("color", "#ffffff");
+                            }
+                        }
+                    }
+                });
+
                 $('.topIdeas').append(div);
             }
         });
     }
 
     function logout(){
-        firebase.auth().signOut();
-        localStorage.removeItem("uid");
-        location.replace("../html/landing.html");
+        firebase.auth().signOut().then(() => {
+            localStorage.removeItem("uid");
+            location.replace("../html/landing.html");
+        });
     }
 
     function ideaModal(){
@@ -731,7 +790,7 @@
     function createIdea(){
         // Get idea data
         var title = $('#title').val();
-        var channel = "#" + $('select').val();
+        var channel = $('select').val();
         var status = $('input[name=status]:checked').val();
         var description = $('#description').val();
 
