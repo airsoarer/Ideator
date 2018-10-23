@@ -12,6 +12,19 @@
     --bottomMargin: 100px;
 }
 
+.sidenav{
+    background-color: #222222;
+}
+
+.sidenav li{
+    margin-bottom: 10px;
+}
+
+.sidenav li a{
+    font-size: 18px;
+    color: white !important;
+}
+
 .input-field label {
     color: var(--baseColor) !important;
 }
