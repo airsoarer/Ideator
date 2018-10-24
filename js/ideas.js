@@ -174,5 +174,7 @@
                 $('.catas').append(btn);
             }
         });
+
+        $(".sidenav").sidenav();
     }
 })();

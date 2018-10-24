@@ -11,6 +11,7 @@
 
     function init(){
         firebase.initializeApp(config);
+        $(".sidenav").sidenav();
         $('#submit').on('click', signUp);
     }
 
