@@ -6,6 +6,12 @@
     --backgroundColor: white;
 }
 
+@media screen and (max-width: 600px){
+    input{
+        margin-bottom: 20px !important;
+    }
+}
+
 input{
     border: solid 2px #333333 !important;
     color: white;
@@ -72,7 +78,7 @@ textarea:focus{
     }
 
     .outside{
-        height: 110vh;
+        height: 115vh;
     }
 }
 
