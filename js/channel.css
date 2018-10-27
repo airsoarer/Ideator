@@ -1,0 +1,33 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    --baseColor: #FFD43C;
+    --accentColorOne: #999861;
+    --accentColorTwo: #1C8BCC;
+    --backgroundColor: white;
+    --leftMargin: 10px;
+    --bottomMargin: 100px;
+}
+
+#none{
+    display: none;
+    transform: translate(25%, 150%);
+}
+
+.nav{
+    height: 84px !important;
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
+
+.nav img{
+    height: 80px;
+    margin-top: 0px;
+    margin-top: -10px;
+    /* width: 100%; */
+}
+
+.navAccountInfo{
+    box-shadow: 0px 1px 5px lightslategray;
+}
+

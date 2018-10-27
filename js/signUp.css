@@ -1,0 +1,88 @@
+*{
+    /* Variables */
+    --baseColor: #FFD43C;
+    --accentColorOne: #999861;
+    --accentColorTwo: #1C8BCC;
+    --backgroundColor: white;
+}
+
+@media screen and (max-width: 600px){
+    input{
+        margin-bottom: 20px !important;
+    }
+}
+
+input{
+    border: solid 2px #333333 !important;
+    color: white;
+    border-radius: 5px;
+}
+
+textarea{
+    color: white;
+    border: solid 2px #333333 !important;
+    height: 277px;
+    border-radius: 5px;
+}
+
+button{
+    margin-top: 10px;
+    height: 50px;
+    background-color: transparent;
+    border: solid 2px #333333;
+    color: white;
+}
+
+button:focus{
+    background-color: var(--baseColor);
+    border: solid 2px var(--baseColor);
+}
+
+button:hover{
+    transition-duration: .5s;
+    border: solid 2px var(--baseColor);
+    border-radius: 5px;
+    color: white;
+}
+
+input::placeholder{
+    color: #333333;
+    padding-left: 5px;
+}
+
+input::first-letter{
+    margin-left: 5px !important;
+}
+
+input:focus{
+    border: solid 2px var(--baseColor) !important;
+}
+
+textarea::placeholder{
+    color: #333333;
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+textarea::first-letter{
+    margin-left: 5px !important;
+}
+
+textarea:focus{
+    border: solid 2px var(--baseColor) !important;
+}
+
+@media screen and (max-width: 600px){
+    textarea{
+        height: 100px !important;
+    }
+
+    .outside{
+        height: 115vh;
+    }
+}
+
+.content-container{
+    margin-bottom: 0px !important;
+}
+

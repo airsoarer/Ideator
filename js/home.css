@@ -1,0 +1,415 @@
+html{
+    overflow: scroll;
+}
+
+body{
+    /* Variables */
+    --baseColor: #FFD43C;
+    --accentColorOne: #999861;
+    --accentColorTwo: #1C8BCC;
+    --backgroundColor: white;
+
+    --leftMargin: 10px;
+    --bottomMargin: 100px;
+}
+
+p{
+    font-weight: 100;
+}
+
+button{
+    cursor: pointer;
+}
+
+textarea{
+    height: 150px;
+    border: solid 2px #dddddd;
+    border-radius: 5px;
+}
+
+textarea:focus{
+    border-color: var(--baseColor);
+}
+
+@media screen and (max-width: 600px){
+    .modalBtnSetOne{
+        margin-bottom: 10px;
+    }
+}
+
+@keyframes d{
+
+}
+
+i{
+    animation-name: d;
+    animation-duration: 0s;
+}
+
+#none{
+    display: none;
+}
+
+#navSlide{
+    border: none;
+}
+
+#slideOut{
+    background-color: white;
+}
+
+.navAccountInfo{
+    margin-bottom: 15px;
+}
+
+.sidenav li a{
+    color: black !important;
+    font-size: 16px !important;
+}
+
+#dropdown li button{
+    background-color: transparent;
+    color: black;
+    width: 100%;
+    text-align: center;
+    border: none;
+    height: 100% !important;
+    font-size: 16px;
+    padding-top: 15px;
+}
+
+#navSlide:hover{
+    transition-duration: 1s;
+}
+
+#logout{
+    background-color: transparent;
+    border: none;
+}
+
+#ideaModal input{
+    border: solid 2px #dddddd;
+    border-radius: 5px;
+}
+
+#ideaModal input:focus{
+    border-color: var(--baseColor);
+}
+
+#navAccountPhoto{
+    margin-top: 15px;
+    height: 50px !important;
+}
+
+.navAccountInfo img{
+    height: 50px !important;
+    margin-top: 10px;
+    margin-bottom: -10px !important;
+}
+
+#navAccountName{
+    color: black;
+    font-size: 18px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+
+#channelCreate{
+    color: black;
+    font-size: 24px;
+}
+
+#createDropdown li{
+    list-style-type: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+#navAccountName a{
+    color: black;
+    cursor: pointer;
+}
+
+#title:hover{
+    color: black;
+}
+
+#public::before{
+    content: 'M';
+    color: var(--baseColor);
+}
+
+#create::before{
+    content: 'C';
+    color: var(--baseColor);
+}
+
+#public i{
+    color: black;
+}
+
+li i:hover{
+    color: var(--baseColor);
+}
+
+#public i:hover{
+    color: var(--baseColor);
+    transition-duration: .2s;
+}
+
+.follow i{
+    color: var(--baseColor);
+}
+
+.followBtn{
+    margin-bottom: 15px !important;
+}
+
+.color{
+    color: var(--baseColor);
+    font-weight: 700;
+}
+
+.commentA{
+    padding-right: 10px;
+    margin-left: -10px;
+}
+
+.follow{
+    padding-top: 20px;
+    margin-left: -5px !important;
+}
+
+.imgDiv img{
+    width: 110% !important;
+}
+
+.user h5{
+    margin-top: 25px;
+}
+
+.like{
+    height: 50px;
+    border: none;
+    width: 10px;
+    margin-bottom: -10px !important;
+}
+
+.like img{
+    height: 100%;
+    margin-bottom: -10px !important;
+}
+
+.createBtn button{
+    height: 50px;
+    border: solid 2px #dddddd;
+    color: black;
+    background-color: transparent;
+}
+
+.createBtn button:hover{
+    transition-duration: .5s;
+    /* background-color: var(--baseColor); */
+    /* color: white; */
+    border: solid 2px var(--baseColor);
+}
+
+.createBtn button:focus{
+    background-color: var(--baseColor);
+    color: white;
+    border: solid 2px var(--baseColor);
+}
+
+.status p{
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.status{
+    margin-top: 5px;
+}
+
+.createNew a{
+    background-color: var(--accentColorOne);
+    color: white; 
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+}
+
+.catagories div{
+    /* margin-top: 25px; */
+}
+
+.nav button{
+    background-color: transparent;
+    margin-top: 20px;
+}
+
+.idea a{
+    color: black;
+}
+
+.user img{
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.user a{
+    color: black;
+}   
+
+.modalBtnSetOne button{
+    box-shadow: 0 1px 2px lightslategray;
+}
+
+.modalBtnSetTwo button{
+    box-shadow: 0 1px 2px lightslategray;
+}
+
+/* .modalBtnSetOne button:focus{
+    box-shadow: none;
+    background-color: transparent;
+    color: black;
+} */
+
+.user a:hover{
+    color: black;
+}
+
+.createNew button{
+    font-size: 24px !important;
+}
+
+.topIdea button{
+    background-color: transparent;
+    color: black;
+    width: 75px;
+}
+
+.topIdea button:focus{
+    box-shadow: 0 0 0 transparent;
+}
+
+.topIdea button:hover{
+    cursor: pointer;
+}
+
+.imageDiv{
+    margin-right: 20px !important;
+}
+
+.follow .followBtn{
+    width: 150px;
+    height: 50px;
+    border: solid var(--baseColor) 2px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.follow .followBtn:hover{
+    background-color: var(--baseColor);
+    color: white;
+    transition-duration: .5s;
+}
+
+.title a{
+    color: #000000;
+}
+
+.title h6{
+    margin-left: 10px;
+}
+
+.title a:hover{
+    transition-duration: .2s;
+    color: var(--baseColor)
+}
+
+.modalBtnSetOne button:focus{
+    /* box-shadow: inset 0 2px 1px lightslategray; */
+}
+
+.dropdown-content{
+    max-height: 250px;
+}
+
+.publicIdeas{
+    height: auto !important;
+}
+
+.modal{
+    padding-bottom: 15px !important;
+}
+
+.date{
+    margin-top: -15px;
+}
+
+.topIdea{
+    padding-bottom: 10px;
+}
+
+.title{
+    padding-bottom: 20px;
+}
+
+.idea-content{
+    padding-bottom: 20px;
+}
+
+.navAccountInfo{
+    box-shadow: 0px 1px 5px lightslategray;
+}
+
+.idea{
+    margin-bottom: 20px !important;
+}
+
+.nav{
+    background-color: white;
+    box-shadow: 0 0;
+    height: 84px !important;
+}
+
+.catagories{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 85px !important;
+    box-shadow: inset 0px 1px 5px lightslategray;   
+}
+
+.cata{
+    margin-top: -20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 300px;
+    height: 100% !important;
+    display: inline-block;
+}
+
+.cata button{
+    width: 100% !important;
+    height: 100% !important;
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 100;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.sideNavLogo{
+    position: absolute;
+    bottom: 40px;
+}

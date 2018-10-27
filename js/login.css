@@ -1,0 +1,27 @@
+span{
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+input{
+    border-color: #333333;
+}
+
+@media screen and (max-width: 600px){
+    .outside{
+        height: 100vh !important;
+    }
+}
+
+#wrongPass{
+    display: none;
+}
+
+#wrongEmail{
+    display: none;
+}
+
+#notFound{
+    display: none;
+}
