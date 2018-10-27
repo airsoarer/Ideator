@@ -28,16 +28,20 @@
         var storageRef = firebase.storage().ref("Users/" + uid + "/info/profilePhoto");
         storageRef.getDownloadURL().then((url) => {
             imageURL = url;
+            localStorage.setItem("url", url);
             // Set image
             $('#navAccountPhoto').attr("src", url);
+            $('#mobileNavAccountPhoto').attr("src", url);
         });
 
         // Get user name and put in respective div
         var nameRef = firebase.database().ref('Users/' + uid + "/Info");
         nameRef.on('value', (snapshot) => {
             var data = snapshot.val();
+            localStorage.setItem("name", data.FirstName + " " + data.LastName);
             
             $('#name').text(data.FirstName + " " + data.LastName);
+            $('#mobileNavAccountName').text(data.FirstName + " " + data.LastName);
         });
 
         // Get all public ideas and append to respective div
@@ -79,7 +83,7 @@
             // Creator name div
             var nameDiv = document.createElement("div");
             nameDiv.classList.add("col");
-            nameDiv.classList.add("s10");
+            nameDiv.classList.add("s8");
             nameDiv.classList.add("m9");
             $(nameDiv).css('margin-left', '8px');
             creatorDiv.appendChild(nameDiv);
@@ -304,23 +308,22 @@
                 btn.classList.add("channelBtn");
                 div.appendChild(btn);
 
-                // Append
-                $('.catagories').append(div);
+                // Create btn
+                var btn2 = document.createElement("button");
+                btn2.textContent = data[i];
+                // btn.href = "../html/catagory.html?type=" + data[i];
+                btn2.classList.add("truncate");
+                btn2.classList.add("channelBtn");
+                // div.appendChild(btn);
 
                 // Create li drop downs for mobile
                 // li
                 var li = document.createElement("li");
-
-                // a
-                var a2 = document.createElement("a");
-                a2.href = "../html/catagory.html?type=" + data[i];
-                a2.classList.add("truncate");
-                a2.classList.add("center-align");
-                a2.textContent = data[i];
-                li.appendChild(a2);
+                li.appendChild(btn2);
 
                 // Append
                 $("#dropdown").append(li);
+                $('.catagories').append(div);
 
                 // Create options
                 // Option
@@ -381,6 +384,7 @@
     }
 
     function getData(){
+        console.log("working");
         $('.topIdeas').empty();
 
         // Get all public ideas and append to respective div
@@ -422,7 +426,7 @@
             // Creator name div
             var nameDiv = document.createElement("div");
             nameDiv.classList.add("col");
-            nameDiv.classList.add("s10");
+            nameDiv.classList.add("s8");
             nameDiv.classList.add("m9");
             $(nameDiv).css('margin-left', '8px');
             creatorDiv.appendChild(nameDiv);
@@ -623,7 +627,7 @@
                 // Creator name div
                 var nameDiv = document.createElement("div");
                 nameDiv.classList.add("col");
-                nameDiv.classList.add("s10");
+                nameDiv.classList.add("s8");
                 nameDiv.classList.add("m9");
                 $(nameDiv).css('margin-left', '8px');
                 creatorDiv.appendChild(nameDiv);
@@ -778,6 +782,8 @@
     function logout(){
         firebase.auth().signOut().then(() => {
             localStorage.removeItem("uid");
+            localStorage.removeItem("url");
+            localStorage.removeItem("name");
             location.replace("../html/landing.html");
         });
     }
