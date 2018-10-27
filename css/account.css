@@ -9,25 +9,54 @@ body{
     --bottomMargin: 100px;
 }
 
-input{
-    color: black;
-    margin-right: 1px !important; 
+@media screen and (max-width: 600px){
+    .top .temp{
+        padding: 0 !important;
+        margin-top: 20px !important;
+        /* border-top: 1px solid lightslategray; */
+    }
 }
 
-input::placeholder{
-    color: black;
-}
-
-.img img{
-    display: inline-block;
-    margin-bottom: 40px !important;    
-}
-
-.img button{
-    margin-left: -102px;
-    display: inline-block;
+#followers{
+    padding-left: 20px;
+    border-left: solid 1px lightslategray;
 }
 
 .nav{
     box-shadow: 0px 1px 5px lightslategray;
+}
+
+.top img{
+    height: 50px;
+    /* border-radius: 360px !important;
+    border: solid 2px var(--baseColor); */
+    margin-left: 35% !important;
+    /* vertical-align: middle !important; */
+    align-items: center !important;
+    /* transform: translateX(150%)  !important; */
+}
+
+.top button{
+    width: 100%;
+    background-color: transparent;
+    font-size: 20px;
+    border: 2px solid var(--baseColor);
+    height: 50px;
+    margin-top: 10px;
+}
+
+.top button:hover{
+    transition-duration: .5s;
+    background-color: var(--baseColor);
+    color: white;
+    border: 2px solid var(--baseColor);
+}
+
+.top .temp{
+    padding-left: 50px;
+    border-left: solid 1px lightslategray;
+}
+
+.mid{
+    margin-top: 20px !important;
 }

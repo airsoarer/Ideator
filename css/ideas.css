@@ -23,6 +23,12 @@ textarea{
     border-radius: 5px;
 }
 
+@media screen and (max-width: 600px){
+    #things{
+        display: none;
+    }
+}
+
 .dropdown-content li > a, .dropdown-content li > span {
     color: #000000 !important;
     text-align: center;
@@ -126,6 +132,10 @@ li i:hover{
     color: black;
 }
 
+.imgDiv img{
+    width: 100%;
+}
+
 .user img{
     height: 50px;
     margin-left: 10px;
@@ -207,7 +217,11 @@ li i:hover{
 }
 
 .title h6{
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    padding-left: 0px !important;
+    margin-bottom: 20px !important;
+    margin-left: 0px !important;
+    margin-top: -5px !important;
 }
 
 .title a:hover{
@@ -230,5 +244,5 @@ li i:hover{
     background-color: white;
     color: black;
     border: none;
-}
+} 
 
