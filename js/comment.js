@@ -15,8 +15,11 @@
     // Get comment UID
     url = window.location.href;
     url = url.split("?key=");
-    commentUID = url[1];
-    console.log(commentUID);
+    temp = url[1];
+    temp = temp.split("?cc=");
+    commentUID = temp[0];
+    cc = temp[1];
+    // console.log(commentUID, cc);
 
     // Get date
     var mm = new Date().getMonth();
@@ -25,8 +28,8 @@
     var date = mm + "/" + dd + "/" + yy;
 
     // User image url
-    imageURL;
-    username;
+    imageURL = undefined;
+    username = undefined;
 
     function init(){
         firebase.initializeApp(config);
@@ -48,15 +51,16 @@
         });
 
         // Get existing comments from firebase
-        var db = firebase.database().ref("Ideas/" + commentUID + "/Comments");
+        var db = firebase.database().ref("Users/" + cc + "/Ideas/" + commentUID + "/Comments");
         db.on("child_added", (snapshot) => {
             var data = snapshot.val();
-            // console.log(data);
+            console.log(data);
             
             // Make elements for comment
             // Container div
             var div = document.createElement("div");
             div.classList.add("col");
+            div.classList.add("s12");
             div.classList.add("m10");
             div.classList.add("offset-m1");
             div.classList.add("comment");
@@ -64,6 +68,7 @@
             // Image Div
             var imgDiv = document.createElement("div");
             imgDiv.classList.add("col");
+            imgDiv.classList.add("s4");
             imgDiv.classList.add("m2");
             imgDiv.classList.add("image");
             div.appendChild(imgDiv);
@@ -75,9 +80,11 @@
 
             // Text Div
             var txtDiv = document.createElement("div");
-            txtDiv.classList.add("txtDiv");
-            txtDiv.classList.add("m10");
+            txtDiv.classList.add("col");
+            txtDiv.classList.add("s8");
+            txtDiv.classList.add("m9");
             txtDiv.classList.add("offset-m1");
+            txtDiv.classList.add("txtDiv");
             div.appendChild(txtDiv);
     
             // Name
@@ -101,6 +108,11 @@
 
 
         // Event Triggers
+        $(".dropdown-trigger").dropdown();
+        $('.sidenav').sidenav();
+        $('select').formSelect();
+        // $('.modal-trigger').on('click', ideaModal);
+        // $('#createIdea').on('click', createIdea);
         $('#post').on('click', makeComment);
         $('#logout').on("click", logout);
     }
@@ -118,58 +130,12 @@
         // $('.commentWindow').empty();
 
         // Create db reference
-        var db = firebase.database().ref("Ideas/" + commentUID + "/Comments");
+        var db = firebase.database().ref("Users/" + cc + "/Ideas/" + commentUID + "/Comments");
         db.push({
             Creator:username,
             ProfilePhoto:imageURL,
             Date:date,
             Comment:comment,
         });
-        // .then(() => {
-        //     db.on("child_added", (snapshot) => {
-        //         var data = snapshot.val();
-        //         console.log(data);
-                
-        //         // Make elements for comment
-        //         // Container div
-        //         var div = document.createElement("div");
-        //         div.classList.add("col");
-        //         div.classList.add("m10");
-        //         div.classList.add("offset-m1");
-        //         div.classList.add("comment");
-
-        //         // Image 
-        //         var img = document.createElement("img");
-        //         img.src = data.ProfilePhoto;
-        //         img.classList.add("col");
-        //         img.classList.add("m2");
-        //         img.classList.add("image");
-        //         div.appendChild(img);
-
-        //         // Text Div
-        //         var txtDiv = document.createElement("div");
-        //         txtDiv.classList.add("txtDiv");
-        //         txtDiv.classList.add("m10");
-        //         txtDiv.classList.add("offset-m1");
-        //         div.appendChild(txtDiv);
-        
-        //         // Name
-        //         var name = document.createElement("h4");
-        //         name.textContent = data.Creator
-        //         txtDiv.appendChild(name);
-
-        //         // Date
-        //         var date = document.createElement("h6");
-        //         date.textContent = data.Date;
-        //         txtDiv.appendChild(date);
-
-        //         // Comment
-        //         var comment = document.createElement("p");
-        //         comment.textContent = data.Comment;
-        //         txtDiv.appendChild(comment);
-
-        //         $(".commentWindow").append(div);
-        //     });
-        // });
     }
 })();

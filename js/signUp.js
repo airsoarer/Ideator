@@ -15,11 +15,13 @@
         $('#submit').on('click', signUp);
     }
 
+    // TODO: Run checks for if input fields are empty
+    // TODO: Depending on poll, remove entering profile photo in beginning
     function signUp(){
         // Get user data
         var fname = $('#fname').val();
         var lname = $('#lname').val();
-        var username = $('#username').val();
+        // var username = $('#username').val();
         var email = $('#email').val();
         var pass = $('#pass').val();
         var bio = $('#bio').val();
@@ -45,7 +47,7 @@
                 ref.set({
                     FirstName:fname,
                     LastName:lname,
-                    Username:username,
+                    // Username:username,
                     Email:email,
                     Bio:bio,
                     Following: {
@@ -56,6 +58,12 @@
                         Users:{
                             0:"",
                         }
+                    },
+                    Followers: {
+                        0:"",
+                    },
+                    Liked: {
+                        0:"",
                     }
                 }).then(function(){
                     // Get storage ref
