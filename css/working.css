@@ -1,0 +1,220 @@
+body{
+    /* Variables */
+    --baseColor: #FFD43C;
+    --accentColorOne: #999861;
+    --accentColorTwo: #1C8BCC;
+    --backgroundColor: white;
+
+    --leftMargin: 10px;
+    --bottomMargin: 100px;
+
+    box-sizing: border-box;
+}
+
+h5{
+    font-size: 24px !important;
+}
+
+button{
+    background-color: transparent;
+    color: black;
+    border: solid var(--baseColor) 2px;
+}
+
+button:hover{
+    background-color: var(--baseColor);
+    border: solid 2px var(--baseColor);
+    color: white;
+    transition-duration: .5s;
+}
+
+span{
+    color: #000000;
+}
+
+input:active{
+    border-color: var(--baseColor) !important;
+}
+
+textarea:active{
+    border-color: var(--baseColor) !important;
+}
+
+@media screen and (max-width: 601px){
+    .descript{
+        margin-top: -30px !important;
+    }
+
+    .dm{
+        margin-top: 25px !important;
+    }
+
+    .notes{
+        margin-top: 25px !important;
+    }
+
+    .checklist{
+        margin-top: 25px !important;
+    }
+}
+
+#users{
+    margin-bottom: 10px !important;
+}
+
+#usersModal button{
+    height: 50px !important;
+}
+
+.image{
+    width: 100% !important;
+}
+
+.comment{
+    margin-bottom: 15px !important;
+}
+
+.nav{
+    box-shadow: 0px 1px 5px lightslategray;
+}
+
+.top{
+    height: 86px;
+}
+
+.add{
+    margin-top: 32px !important;
+}
+
+.messages{
+    height: 500px !important;
+    box-shadow: inset 0 1px 2px lightslategray;
+}
+
+.second{
+    margin-top: 25px;
+}
+
+.notes{
+    overflow-y: scroll;
+    max-height: 200px !important;
+}
+
+.note{
+    margin-bottom: 10px !important;
+}
+
+.files{
+    overflow-y: scroll;
+    max-height: 200px !important;
+}
+
+.checklist{
+    overflow-y: scroll;
+    max-height: 200px !important;
+}
+
+.third{
+    height: 200px !important;
+    margin-top: 20px !important;
+}
+
+.file{
+    background-color: #eeeeee;
+    padding-bottom: 15px !important;
+    margin-bottom: 10px !important;
+    /* margin-left: -20px !important; */
+}
+
+.file i{
+    margin-top: 15px !important;
+}
+
+.third h5{
+    font-size: 24px !important;
+}
+
+.fourth{
+    height: 200px !important;
+}
+
+.files a{
+    margin-top: 19px !important;
+    color: black;
+}
+
+.checklist a{
+    margin-top: 19px !important;
+    color: black;
+}
+
+.dm a{
+    margin-top: 19px !important;
+    color: black
+}
+
+.notes a{
+    margin-top: 19px !important;
+    color: black;
+}
+
+.messageBtn button{
+    margin-top: 20px !important;
+}
+
+.input button{
+    height: 50px !important;
+    background-color: transparent;
+    color: black;
+    border: solid 2px var(--baseColor);
+}
+
+.input button:hover{
+    transition-duration: .5s;
+    background-color: var(--baseColor);
+    color: #FFFFFF;
+    border: solid 2px var(--baseColor);
+}
+
+.input input{
+    border: none !important;
+    margin-bottom: 0px !important;
+    margin-top: 23px !important;
+}
+
+.input input::placeholder{
+    font-size: 16px;
+    color: #888888;
+}
+
+.add a{
+    color: black;
+}
+
+.descript textarea{
+    border: none;
+}
+
+.descript textarea::placeholder{
+    font-size: 18px;
+    color: black;
+}
+
+.titleDiv input{
+    padding-top: 22px !important;
+    border: none !important;
+    /* height: 100% !important; */
+}
+
+.titleDiv input::placeholder{
+    font-size: 32px;
+    color: black;
+}
+
+.imgs div{
+    margin-left: -20px !important;
+}
+
+.imgs div img{
+    height: 80px;
+}

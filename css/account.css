@@ -9,11 +9,45 @@ body{
     --bottomMargin: 100px;
 }
 
+input{
+    border: solid 2px #dddddd !important;
+}
+
+input:focus{
+    border-color: var(--baseColor) !important;
+}
+
+textarea{
+    border-radius: 0px;
+}
+
+#updateModal button{
+    font-size: 18px;
+    height: 50px;
+    border: solid 2px var(--baseColor);
+    background-color: transparent;
+}
+
+#updateModal button:hover{
+    transition-duration: .5s;
+    background-color: var(--baseColor);
+    color: white;
+    border: solid 2px var(--baseColor);
+}
+
 @media screen and (max-width: 600px){
     .top .temp{
         padding: 0 !important;
         margin-top: 20px !important;
         /* border-top: 1px solid lightslategray; */
+    }
+
+    .lights{
+        margin-top: 0px !important;
+    }
+
+    .bio{
+        margin-top: 0px !important;
     }
 }
 
@@ -60,3 +94,27 @@ body{
 .mid{
     margin-top: 20px !important;
 }
+
+.title p{
+    margin-top: -5px !important;
+}
+
+.bottom{
+    height: 70vh !important;
+    /* display: flex; */
+    margin-bottom: 0px !important;
+    background-color: #eeeeee;
+}
+
+.idea{
+    margin-bottom: 50px;
+}
+
+.lights{
+    margin-top: 15px;
+}
+
+.bio{
+    margin-top: 25px;
+}
+

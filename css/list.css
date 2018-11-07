@@ -1,0 +1,33 @@
+body{
+    /* Variables */
+    --baseColor: #FFD43C;
+    --accentColorOne: #999861;
+    --accentColorTwo: #1C8BCC;
+    --backgroundColor: white;
+
+    --leftMargin: 10px;
+    --bottomMargin: 100px;
+}
+
+i{
+    color: #000000;
+}
+
+.nav{
+    box-shadow: 0px 1px 5px lightslategray;
+}
+
+.ideas{
+    margin-top: 20px;
+}
+
+.idea{
+    background-color: #eeeeee;
+    padding-bottom: 15px !important;
+    margin-bottom: 30px;
+}
+
+.idea a:hover{
+    transition-duration: .5s;
+    color: var(--baseColor);
+}
