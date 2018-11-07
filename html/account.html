@@ -36,8 +36,8 @@
                 <li class="col s12 left-align" class="truncate" style="margin-top: -5px;"><h5 id="mobileNavAccountName"></h5></li>
             </div>
             <li class="col s12"><a href="home.html">Home</a></li>
-            <li class="col s12"><a href="" class="waves-effect left-align">My Ideas and Projects</a></li>
-            <li class="col s12"><a href="#ideaModal" class="waves-effect left-align modal-trigger">New Idea or Project</a></li>
+            <li class="col s12"><a href="list.html" class="waves-effect left-align">My Ideas</a></li>
+            <li class="col s12"><a href="#ideaModal" id="idea" class="waves-effect left-align modal-trigger">New Idea</a></li>
             <!-- <li class="col s12"><a class="dropdown-trigger waves-effect left-align" data-target="dropdown" href="#">Catagories</a></li>     -->
             <li class="col s12"><a href="account.html" class="waves-effect left-align">Account</a></li>    
             <!-- <li class="col s12 divider"></li>     -->
@@ -83,22 +83,42 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="modal" id="updateModal">
+                <div class="modal-content">
+                    <h4>Update your Account</h4>
+                    <input type="text" placeholder="First Name: " id="fname">
+                    <input type="text" placeholder="Last Name: " id="lname">
+                    <input type="email" placeholder="Email: " id="email">
+                    <input type="password" placeholder="Password: " id="pass">
+                    <span>Must be 8 or more characters</span>
+                    <br>
+                    <br>
+                    <textarea id="bio" placeholder="Tell us about yourself again: " cols="30" rows="10"></textarea>
+                    <button class="col s6" id="update">Update</button>     
+                </div>
+            </div>
+        </div>
         <br>
         <div class="row top">
             <div class="col s12 m4">
                 <img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle photo">
                 <h5 class="center-align" style="center-align:center !important;" id="bodyName"></h5>
+                <!-- <p class="col s12 m12 hide-on-med-and-up center-align bio"></p> -->
             </div>
             <div class="col s12 m8 temp">
-                <h5 class="col s6 m6 center-align" id="following">0 Following</h5>
-                <h5 class="col s6 m6 center-align" id="followers">0 Followers</h5>
+                <h5 class="col s6 m6 center-align" id="following"><span id="followingSpan"></span> Following</h5>
+                <h5 class="col s6 m6 center-align" id="followers"><span id="followersSpan"></span> Followers</h5>
                 <div class="col s12 edit">
-                    <button id="edit">Edit</button>
+                    <button data-target="updateModal" class="modal-trigger" id="edit">Edit</button>
                 </div>
             </div>
         </div>
         <div class="row mid">
-            <p class="col s12 m12 center-align" id="bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus dolorem voluptates doloribus eligendi rem voluptate quibusdam fugit, consectetur impedit numquam ipsam quasi doloremque repudiandae eum blanditiis vero illo! Iste, eaque!</p>
+            <p class="col s12 m12 center-align bio"></p>
+        </div>
+        <div class="row bottom">
+
         </div>
     </div>
 </body>

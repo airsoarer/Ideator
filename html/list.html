@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ideator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="icon" href="../logos/ideatorLogoSingleYellow.png">
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="../js/list.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav">
+            <ul class="row">
+                <li class="col s2 hide-on-med-and-up left-align"><button style="margin-top: 11px !important; margin-left: 25px !important;" id="navSlide" data-target="slideOut" class="sidenav-trigger"><i class="material-icons">menu</i></button></li>
+                <li class="col s10 m6 offset-m2 left-align"><a href="home.html"><img src="../logos/ideatorLogoYellow.png"></a></li>
+                <li class="col hide-on-small-only m1 center-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" id="navAccountPhoto" class="circle"></li>
+                <li id="navAccountName" class="col hide-on-small-only m2 center-align truncate"><a id="name" title="Account Page" href="account.html?type=r"></a></li>
+                <li class="hide-on-small-only center-align col m1"><button title="Logout" id="logout"><i class="material-icons small">exit_to_app</i></button></li>
+            </ul>
+        </div>
+    </div>
+    <ul id="slideOut" class="row sidenav">
+        <div class="col s12 navAccountInfo">
+            <li class="col s12 left-align"><img src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" class="circle" id="mobileNavAccountPhoto"></li>
+            <li class="col s12 left-align" class="truncate" style="margin-top: -5px;"><h5 id="mobileNavAccountName"></h5></li>
+        </div>
+        <li class="col s12"><a href="home.html" class="waves-effect left-align">Home</a></li>
+        <li class="col s12"><a href="list.html" class="waves-effect left-align">My Ideas</a></li>
+        <li class="col s12"><a href="#ideaModal" class="waves-effect left-align modal-trigger">New Idea</a></li>
+        <!-- Dropdown -->
+        <ul id="dropdown" class="dropdown-content">
+            <li tabindex="-1"><button class="truncate stickyChannelBtn">All Ideas</button></li>
+        </ul>
+        <li class="col s12"><a class="dropdown-trigger waves-effect left-align" data-target="dropdown" href="#">Catagories</a></li>    
+        <li class="col s12"><a href="account.html" class="waves-effect left-align">Account</a></li>    
+        <!-- <li class="col s12 divider"></li>     -->
+        <li class="center-align sideNavLogo"><img class="center-align" src="../logos/ideatorLogoYellow.png"></li>
+    </ul>
+    <div class="row">
+        <!-- Modal for creating new Ideas and Projects -->
+        <div class="modal" id="ideaModal">
+            <div class="modal-content">
+                <h4>Create a new Project or Idea</h4>
+                <div class="col s12 m12">
+                    <br>
+                    <!-- <label for="title">Title</label> -->
+                    <input type="text" placeholder="Title" id="title">
+                </div>
+                <div class="input-field col s12 m6">
+                    <select id="channels">
+                        <option value="" disabled selected>Choose your Channel</option>
+                        <!-- <option value="Hello">hello</option> -->
+                    </select>
+                </div>
+                <div class="col s12 m6 modalBtnSetOne">
+                    <br>
+                    <p>
+                        <label>
+                            <input name="status" type="radio" value="public" id="public" />
+                            <span>Public</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input name="status" type="radio" value="private" id="private">
+                            <span>Private</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="col s12 m12">
+                    <textarea placeholder="Enter a description" id="description"></textarea>
+                </div>
+                <div class="col s12 m6 createBtn">
+                    <button class="col s12 m6" id="createIdea">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row list">
+        <div class="col m2 offset-m1">
+            <h4>My Ideas</h4>
+        </div>
+        <div class="col m9" style="margin-top: 8px;">
+            <br>
+            <a title="Create an Idea" class= "modal-trigger" href="#ideaModal"><i class= "material-icons">add</i></a>
+        </div>
+        <div class="col m12 ideas">
+
+        </div>
+    </div>
+</body>
+</html>
