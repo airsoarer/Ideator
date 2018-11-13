@@ -79,7 +79,7 @@ textarea:active{
 }
 
 .top{
-    height: 86px;
+    height: 70px !important;
 }
 
 .add{
@@ -102,6 +102,15 @@ textarea:active{
 
 .note{
     margin-bottom: 10px !important;
+}
+
+.file:first-of-type{
+    margin-left: 0px !important;
+}
+
+.file{
+    /* margin-left: 0px !important; */
+    margin-bottom: 50px !important;
 }
 
 .files{

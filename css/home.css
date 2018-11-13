@@ -27,6 +27,10 @@ textarea{
     border-radius: 5px;
 }
 
+i{
+    color: black;
+}
+
 textarea:focus{
     border-color: var(--baseColor);
 }
@@ -327,9 +331,14 @@ li i:hover{
     margin-left: 10px;
 }
 
-.title a:hover{
+/* .title a:hover{
     transition-duration: .2s;
     color: var(--baseColor)
+} */
+
+.idea a:hover{
+    color: var(--baseColor);
+    transition-duration: .5s;
 }
 
 .modalBtnSetOne button:focus{
