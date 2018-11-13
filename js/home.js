@@ -45,15 +45,17 @@
         });
 
         // Get all public ideas and append to respective div
-        var publicRef = firebase.database().ref("Users");
+        var publicRef = firebase.database().ref("WorkingSpace");
         publicRef.on("child_added", (snapshot) => {
             var data = snapshot.val();
-            var imgUid = snapshot.key;
+            // console.log(data);
+            var key = snapshot.key;
+            // console.log(key);
 
-            for(var i in data.Ideas){
-                var key = Object.keys(data.Ideas)[0];
+            // for(var i in data){
+                // var key = Object.keys(data.Ideas)[0];
                 // console.log(Object.keys(data.Ideas)[0])
-                if(data.Ideas[i].Status === "public"){
+                if(data.Status === "public"){
                     // Container div
                     var div = document.createElement("div");
                     div.classList.add("card");
@@ -73,7 +75,7 @@
                     imgDiv.classList.add("imgDiv");
                     creatorDiv.appendChild(imgDiv);
 
-                    var storage = firebase.storage().ref("Users/" + data.Ideas[i].Creator + "/info/profilePhoto");
+                    var storage = firebase.storage().ref("Users/" + data.Creator + "/info/profilePhoto");
                     storage.getDownloadURL().then((url) => {
                         // console.log(url);
                         // Creator image
@@ -101,8 +103,12 @@
 
                     // Creator name
                     var name = document.createElement("a");
-                    name.href = "../html/account.html?type=d?uid=" + data.Ideas[i].Creator;
-                    name.textContent = data.Info.FirstName + " " + data.Info.LastName;
+                    name.href = "../html/account.html?type=d?uid=" + data.Creator;
+                    firebase.database().ref("Users/" + data.Creator + "/Info").on("value", (snapshot) => {
+                        var dataTwo = snapshot.val();
+                        console.log(dataTwo);
+                        name.textContent = dataTwo.FirstName + " " + dataTwo.LastName;
+                    });
                     nameH5.appendChild(name);
                     
                     // Data creation div
@@ -114,7 +120,7 @@
                     var date = document.createElement("p");
                     date.classList.add("col");
                     date.classList.add("m12");
-                    date.textContent = "Idea Created: " + data.Ideas[i].CreationDate;
+                    date.textContent = "Idea Created: " + data.CreationDate;
                     creationDiv.appendChild(date);
 
                     // Title div
@@ -146,7 +152,7 @@
                     // Channel
                     var channel = document.createElement("p");
                     // channel.src = "#";
-                    channel.textContent = data.Ideas[i].Channel;
+                    channel.textContent = data.Channel;
                     channelH6.appendChild(channel);
 
                     // Description div
@@ -157,7 +163,7 @@
 
                     // Description
                     var description = document.createElement("p");
-                    description.textContent = data.Ideas[i].Description;
+                    description.textContent = data.Description;
                     descriptionDiv.appendChild(description);
 
                     // Buttons div
@@ -170,7 +176,7 @@
                     var lightbulbButton = document.createElement("button");
                     lightbulbButton.classList.add("like");
                     lightbulbButton.id = key;
-                    lightbulbButton.name = data.Ideas[i].Creator;
+                    lightbulbButton.name = data.Creator;
                     buttonsDiv.appendChild(lightbulbButton);
 
                     // img
@@ -199,7 +205,7 @@
 
                     // Comment a
                     var commentA = document.createElement("a");
-                    commentA.href = "../html/comment.html?key=" + key + "?cc=" + data.Ideas[i].Creator;
+                    commentA.href = "../html/comment.html?key=" + key + "?cc=" + data.Creator;
                     commentA.classList.add("commentA");
                     buttonsDiv.appendChild(commentA);
 
@@ -233,64 +239,70 @@
 
                     $('.topIdeas').append(div);
                 }
-            }
+            // }
         });
 
         // Get user ideas and append to user ideas
-        var ref = firebase.database().ref('Users/' + uid + "/Ideas");
+        var ref = firebase.database().ref('Users/' + uid + "/WorkingSpaceKeys");
         ref.on('child_added', function(snapshot){
             var data = snapshot.val();
-            var key = snapshot.key;
+            // console.log(data.Key);
+            // var key = snapshot.key;
 
             if(!data){
-                $('#noIdea').css('display', 'block');
+                $('#noIdea').css('display', 'block !important');
             }
 
-            // Container div
-            var div = document.createElement("div");
-            div.classList.add("col");
-            div.classList.add("m12");
-            div.classList.add("idea");
+            firebase.database().ref("WorkingSpace/" + data.Key).on("value", (snapshot) => {
+                var data = snapshot.val();
+                var key = snapshot.key;
 
-            // Title
-            var h5 = document.createElement("h5");
-            
-            // Title link
-            var a = document.createElement("a");
-            a.textContent = data.Title;
-            // a.href = "../html/working.html?key=" + key;
-            // if(data.status === "private"){
-            //     a.href = "../"
-            // }
+                // Container div
+                var div = document.createElement("div");
+                div.classList.add("col");
+                div.classList.add("m12");
+                div.classList.add("idea");
 
-            // Append a to h5
-            h5.appendChild(a);
+                // Title
+                var h5 = document.createElement("h5");
+                
+                // Title link
+                var a = document.createElement("a");
+                a.textContent = data.Title;
+                a.href = "../html/working.html?key=" + key;
+                // if(data.status === "private"){
+                //     a.href = "../"
+                // }
 
-            // Description
-            var p = document.createElement("p");
-            p.textContent = data.Description;
+                // Append a to h5
+                h5.appendChild(a);
 
-            // Status div
-            var statusDiv = document.createElement("div");
-            statusDiv.classList.add("status");
+                // Description
+                var p = document.createElement("p");
+                p.textContent = data.Description;
 
-            // Status
-            var statusP = document.createElement("p");
-            statusP.textContent = "Status: " +  data.Status;
+                // Status div
+                var statusDiv = document.createElement("div");
+                statusDiv.classList.add("status");
 
-            // Append to status div
-            statusDiv.appendChild(statusP);
+                // Status
+                var statusP = document.createElement("p");
+                statusP.textContent = "Status: " +  data.Status;
 
-            // Append to container div
-            div.appendChild(h5);
-            div.appendChild(p);
-            div.appendChild(statusDiv);
+                // Append to status div
+                statusDiv.appendChild(statusP);
 
-            // Get rid of h4
-            $('#noIdea').css('display', 'none');
+                // Append to container div
+                div.appendChild(h5);
+                div.appendChild(p);
+                div.appendChild(statusDiv);
 
-            // Append to hard coded HTML
-            $('.publicIdeas').append(div);
+                // Get rid of h4
+                $('#noIdea').css('display', 'none');
+
+                // Append to hard coded HTML
+                $('.publicIdeas').append(div);
+            });
         });
 
         // Get Catagories
@@ -371,7 +383,7 @@
         $(this).prop("disabled", true);
         $(this).children('.bulb').attr("src", "../photos/lightbulb_on.png");
 
-        var ref2 = firebase.database().ref('Users/' + userID + "/Ideas/" + id).child('Lights');
+        var ref2 = firebase.database().ref("WorkingSpace/" + id).child('Lights');
         ref2.transaction((Lights) => {
             if(!Lights){
                 Lights = Lights + 1;
@@ -393,15 +405,16 @@
         $('.topIdeas').empty();
 
         // Get all public ideas and append to respective div
-        var publicRef = firebase.database().ref("Users");
+        var publicRef = firebase.database().ref("WorkingSpace");
         publicRef.on("child_added", (snapshot) => {
             var data = snapshot.val();
-            var imgUid = snapshot.key;
+            // console.log(data);
+            var key = snapshot.key;
 
-            for(var i in data.Ideas){
-                var key = Object.keys(data.Ideas)[0];
+            // for(var i in data){
+                // var key = Object.keys(data.Ideas)[0];
                 // console.log(Object.keys(data.Ideas)[0])
-                if(data.Ideas[i].Status === "public"){
+                if(data.Status === "public"){
                     // Container div
                     var div = document.createElement("div");
                     div.classList.add("card");
@@ -421,7 +434,7 @@
                     imgDiv.classList.add("imgDiv");
                     creatorDiv.appendChild(imgDiv);
 
-                    var storage = firebase.storage().ref("Users/" + data.Ideas[i].Creator + "/info/profilePhoto");
+                    var storage = firebase.storage().ref("Users/" + data.Creator + "/info/profilePhoto");
                     storage.getDownloadURL().then((url) => {
                         // console.log(url);
                         // Creator image
@@ -449,8 +462,13 @@
 
                     // Creator name
                     var name = document.createElement("a");
-                    name.href = "../html/account.html?type=d?uid=" + data.Ideas[i].Creator;
-                    name.textContent = data.Info.FirstName + " " + data.Info.LastName;
+                    name.href = "../html/account.html?type=d?uid=" + data.Creator;
+                    // console.log(data.Creator);
+                    firebase.database().ref("Users/" + data.Creator + "/Info").on("value", (snapshot) => {
+                        var dataTwo = snapshot.val();
+                        // console.log(dataTwo);
+                        name.textContent = dataTwo.FirstName + " " + dataTwo.LastName;
+                    });
                     nameH5.appendChild(name);
                     
                     // Data creation div
@@ -462,7 +480,7 @@
                     var date = document.createElement("p");
                     date.classList.add("col");
                     date.classList.add("m12");
-                    date.textContent = "Idea Created: " + data.Ideas[i].CreationDate;
+                    date.textContent = "Idea Created: " + data.CreationDate;
                     creationDiv.appendChild(date);
 
                     // Title div
@@ -494,7 +512,7 @@
                     // Channel
                     var channel = document.createElement("p");
                     // channel.src = "#";
-                    channel.textContent = data.Ideas[i].Channel;
+                    channel.textContent = data.Channel;
                     channelH6.appendChild(channel);
 
                     // Description div
@@ -505,7 +523,7 @@
 
                     // Description
                     var description = document.createElement("p");
-                    description.textContent = data.Ideas[i].Description;
+                    description.textContent = data.Description;
                     descriptionDiv.appendChild(description);
 
                     // Buttons div
@@ -518,7 +536,7 @@
                     var lightbulbButton = document.createElement("button");
                     lightbulbButton.classList.add("like");
                     lightbulbButton.id = key;
-                    lightbulbButton.name = data.Ideas[i].Creator;
+                    lightbulbButton.name = data.Creator;
                     buttonsDiv.appendChild(lightbulbButton);
 
                     // img
@@ -547,7 +565,7 @@
 
                     // Comment a
                     var commentA = document.createElement("a");
-                    commentA.href = "../html/comment.html?key=" + key + "?cc=" + data.Ideas[i].Creator;
+                    commentA.href = "../html/comment.html?key=" + key;
                     commentA.classList.add("commentA");
                     buttonsDiv.appendChild(commentA);
 
@@ -581,7 +599,7 @@
 
                     $('.topIdeas').append(div);
                 }
-            }
+            // }
         });
     }
 
@@ -592,16 +610,19 @@
         // Clear Ideas div
         $('.topIdeas').empty();  
 
-        var publicRef = firebase.database().ref("Users");
+        // Get all public ideas and append to respective div
+        var publicRef = firebase.database().ref("WorkingSpace");
         publicRef.on("child_added", (snapshot) => {
             var data = snapshot.val();
-            var imgUid = snapshot.key;
+            // console.log(data);
+            var key = snapshot.key;
+            // console.log(key);
 
-            for(var i in data.Ideas){
-                var key = Object.keys(data.Ideas)[0];
+            // for(var i in data){
+                // var key = Object.keys(data.Ideas)[0];
                 // console.log(Object.keys(data.Ideas)[0])
-                if(data.Ideas[i].Status === "public"){
-                    if(data.Ideas[i].Channel === channelTemp){
+                if(data.Status === "public"){
+                    if(data.Channel === channelTemp){
                         // Container div
                         var div = document.createElement("div");
                         div.classList.add("card");
@@ -621,7 +642,7 @@
                         imgDiv.classList.add("imgDiv");
                         creatorDiv.appendChild(imgDiv);
 
-                        var storage = firebase.storage().ref("Users/" + data.Ideas[i].Creator + "/info/profilePhoto");
+                        var storage = firebase.storage().ref("Users/" + data.Creator + "/info/profilePhoto");
                         storage.getDownloadURL().then((url) => {
                             // console.log(url);
                             // Creator image
@@ -649,8 +670,12 @@
 
                         // Creator name
                         var name = document.createElement("a");
-                        name.href = "../html/account.html?type=d?uid=" + data.Ideas[i].Creator;
-                        name.textContent = data.Info.FirstName + " " + data.Info.LastName;
+                        name.href = "../html/account.html?type=d?uid=" + data.Creator;
+                        firebase.database().ref("Users/" + data.Creator + "/Info").on("value", (snapshot) => {
+                            var dataTwo = snapshot.val();
+                            console.log(dataTwo);
+                            name.textContent = dataTwo.FirstName + " " + dataTwo.LastName;
+                        });
                         nameH5.appendChild(name);
                         
                         // Data creation div
@@ -662,7 +687,7 @@
                         var date = document.createElement("p");
                         date.classList.add("col");
                         date.classList.add("m12");
-                        date.textContent = "Idea Created: " + data.Ideas[i].CreationDate;
+                        date.textContent = "Idea Created: " + data.CreationDate;
                         creationDiv.appendChild(date);
 
                         // Title div
@@ -694,7 +719,7 @@
                         // Channel
                         var channel = document.createElement("p");
                         // channel.src = "#";
-                        channel.textContent = data.Ideas[i].Channel;
+                        channel.textContent = data.Channel;
                         channelH6.appendChild(channel);
 
                         // Description div
@@ -705,7 +730,7 @@
 
                         // Description
                         var description = document.createElement("p");
-                        description.textContent = data.Ideas[i].Description;
+                        description.textContent = data.Description;
                         descriptionDiv.appendChild(description);
 
                         // Buttons div
@@ -718,7 +743,7 @@
                         var lightbulbButton = document.createElement("button");
                         lightbulbButton.classList.add("like");
                         lightbulbButton.id = key;
-                        lightbulbButton.name = data.Ideas[i].Creator;
+                        lightbulbButton.name = data.Creator;
                         buttonsDiv.appendChild(lightbulbButton);
 
                         // img
@@ -747,7 +772,7 @@
 
                         // Comment a
                         var commentA = document.createElement("a");
-                        commentA.href = "../html/comment.html?key=" + key + "?cc=" + data.Ideas[i].Creator;
+                        commentA.href = "../html/comment.html?key=" + key + "?cc=" + data.Creator;
                         commentA.classList.add("commentA");
                         buttonsDiv.appendChild(commentA);
 
@@ -782,7 +807,7 @@
                         $('.topIdeas').append(div);
                     }
                 }
-            }
+            // }
         });
     }
 
@@ -821,7 +846,7 @@
         }
 
         // Get database ref
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas");
+        var ref = firebase.database().ref("WorkingSpace");
         ref.push({
             Title:title,
             Channel:channel,
@@ -834,6 +859,12 @@
                 uid,
             ]
         }).then(function(){
+            ref.once("child_added", (snapshot) => {
+                var key = snapshot.key;
+                firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys").push({
+                    Key:key,
+                });
+            });
             $('#ideaModal').modal();
             $('#ideaModal').modal("close");
         });

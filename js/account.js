@@ -28,7 +28,7 @@
     }
 
     // User image url
-    imageURL;
+    imageURL = undefined;
 
     function init(){
         firebase.initializeApp(config);
@@ -76,7 +76,7 @@
             });
 
             // Get Ideas
-            var ref = firebase.database().ref("Ideas");
+            var ref = firebase.database().ref("WorkingSpace");
             ref.on("child_added", (snapshot) => {
                 var data = snapshot.val();
                 var key = snapshot.key;
@@ -100,7 +100,7 @@
 
                     // a 
                     var a = document.createElement("a");
-                    a.href = "../html/working.html?key=" + key;
+                    // a.href = "../html/working.html?key=" + key;
 
                     // Title h5
                     var h5 = document.createElement("h5");
@@ -108,9 +108,9 @@
                     a.appendChild(h5);
                     titleDiv.appendChild(a);
 
-                    // Channel p
+                    // Description p
                     var p = document.createElement("p");
-                    p.textContent = data.Channel;
+                    p.textContent = data.Description;
                     titleDiv.appendChild(p);
 
                     // Lights div
@@ -164,52 +164,58 @@
             });
 
             // Get Ideas
-            var ref = firebase.database().ref("Users/" + uid + "/Ideas");
+            var ref = firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys");
             ref.on("child_added", (snapshot) => {
                 var data = snapshot.val();
-                var key = snapshot.key;
+                // var key = snapshot.key;
                 // console.log(data);
 
-                // Create Div 
-                var div = document.createElement("div");
-                div.classList.add("row");
-                div.classList.add("idea");
+                firebase.database().ref("WorkingSpace/" + data.Key).on("value", (snapshot) => {
+                    var dataTwo = snapshot.val();
+                    var key = snapshot.key;
+                    // console.log(dataTwo.Description);
 
-                // Title and Channel div
-                var titleDiv = document.createElement("div");
-                titleDiv.classList.add("col");
-                titleDiv.classList.add("m10");
-                titleDiv.classList.add("title");
-                div.appendChild(titleDiv);
+                    // Create Div 
+                    var div = document.createElement("div");
+                    div.classList.add("row");
+                    div.classList.add("idea");
 
-                // a 
-                var a = document.createElement("a");
-                a.href = "../html/working.html?key=" + key;
+                    // Title and Channel div
+                    var titleDiv = document.createElement("div");
+                    titleDiv.classList.add("col");
+                    titleDiv.classList.add("m10");
+                    titleDiv.classList.add("title");
+                    div.appendChild(titleDiv);
 
-                // Title h5
-                var h5 = document.createElement("h5");
-                h5.textContent = data.Title;
-                a.appendChild(h5);
-                titleDiv.appendChild(a);
+                    // a 
+                    var a = document.createElement("a");
+                    a.href = "../html/working.html?key=" + key;
 
-                // Description p
-                var p = document.createElement("p");
-                p.textContent = data.Description;
-                titleDiv.appendChild(p);
+                    // Title h5
+                    var h5 = document.createElement("h5");
+                    h5.textContent = dataTwo.Title;
+                    a.appendChild(h5);
+                    titleDiv.appendChild(a);
 
-                // Lights div
-                var lightDiv = document.createElement("div");
-                lightDiv.classList.add("col");
-                lightDiv.classList.add("m2");
-                lightDiv.classList.add("lights");
-                div.appendChild(lightDiv);
+                    // Description p
+                    var p = document.createElement("p");
+                    p.textContent = dataTwo.Description;
+                    titleDiv.appendChild(p);
 
-                // Lights p
-                var pLight = document.createElement("p");
-                pLight.textContent = data.Lights + " Lights";
-                lightDiv.appendChild(pLight);
+                    // Lights div
+                    var lightDiv = document.createElement("div");
+                    lightDiv.classList.add("col");
+                    lightDiv.classList.add("m2");
+                    lightDiv.classList.add("lights");
+                    div.appendChild(lightDiv);
 
-                $('.bottom').append(div);
+                    // Lights p
+                    var pLight = document.createElement("p");
+                    pLight.textContent = dataTwo.Lights + " Lights";
+                    lightDiv.appendChild(pLight);
+
+                    $('.bottom').append(div);
+                });
             });
         }
 
@@ -388,7 +394,7 @@
         }
 
         // Get database ref
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas");
+        var ref = firebase.database().ref("WorkingSpace");
         ref.push({
             Title:title,
             Channel:channel,
@@ -401,6 +407,12 @@
                 uid,
             ]
         }).then(function(){
+            ref.once("child_added", (snapshot) => {
+                var key = snapshot.key;
+                firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys").push({
+                    Key:key,
+                });
+            });
             $('#ideaModal').modal();
             $('#ideaModal').modal("close");
         });

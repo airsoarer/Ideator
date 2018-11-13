@@ -51,10 +51,10 @@
         });
 
         // Get existing comments from firebase
-        var db = firebase.database().ref("Users/" + cc + "/Ideas/" + commentUID + "/Comments");
+        var db = firebase.database().ref("WorkingSpace/" + commentUID + "/Comments");
         db.on("child_added", (snapshot) => {
             var data = snapshot.val();
-            console.log(data);
+            // console.log(data);
             
             // Make elements for comment
             // Container div
@@ -130,7 +130,7 @@
         // $('.commentWindow').empty();
 
         // Create db reference
-        var db = firebase.database().ref("Users/" + cc + "/Ideas/" + commentUID + "/Comments");
+        var db = firebase.database().ref("WorkingSpace/" + commentUID + "/Comments");
         db.push({
             Creator:username,
             ProfilePhoto:imageURL,

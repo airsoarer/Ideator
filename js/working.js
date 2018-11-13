@@ -9,6 +9,10 @@
         messagingSenderId: "1028735046652"
     };
 
+    // Set variable to check if they entered a valid user when adding a user to the project
+    realUser = undefined;
+    realUID = undefined;
+
     // Get user uid from localStorage
     uid = localStorage.getItem('uid');
     // console.log(uid);
@@ -52,7 +56,7 @@
         });
 
         // Get data
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey);
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey);
         ref.on("value", (snapshot) => {
             var data = snapshot.val();
             $(".titleInput").attr("placeholder", data.Title);
@@ -61,7 +65,7 @@
         });
 
         // Get Notes
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/Notes");
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey + "/Notes");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
             // console.log(data.Note);
@@ -81,7 +85,7 @@
         });
 
         // Get checklist items
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/Checklist");
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey + "/Checklist");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
             var key = snapshot.key;
@@ -119,7 +123,7 @@
         });
 
         // Get Group Messages
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/GroupMessages");
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey + "/GroupMessages");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
             // console.log(data.User);
@@ -156,7 +160,7 @@
         });
 
         // Get Files
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/FilePaths");
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey + "/FilePaths");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
             // console.log(data);
@@ -166,8 +170,8 @@
                 // Create Div
                 var div = document.createElement("div");
                 div.classList.add("col");
-                div.classList.add("m5");
-                div.classList.add("offset-m1");
+                div.classList.add("m3");
+                // div.classList.add("offset-m1");
                 div.classList.add("file");
 
                 // file icon
@@ -194,7 +198,7 @@
         });
 
         // Get Users
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/Users");
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey + "/Users");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
             firebase.database().ref("Users/" + data + "/Info").on("value", (snapshot) => {
@@ -275,8 +279,20 @@
         $(".dropdown-trigger").dropdown();
         $('.sidenav').sidenav();
         $('select').formSelect();
+        $('.titleInput').on("keyup", (e) => {
+            // console.log("working");
+            if(e.keyCode === 13){
+                updateTitle();
+            }
+        });
+        $('.textarea').on("keyup", (e) => {
+            if(e.keyCode === 13){
+                updateDescription();
+            }
+        });
         $("#userTrigger").on("click", userTrigger);
-        $("#user").on("keyup", addUser);
+        $("#user").on("keyup", userCheck);
+        $("#addUser").on("click", addUser);
         $("#send").on('click', groupMessage);
         $('#checklist').on("click", checklist);
         $("#check").on("click", createChecklistItem);
@@ -290,17 +306,72 @@
         $('#logout').on("click", logout);
     }
 
+    function updateTitle(){
+        // Get new title value
+        var title = $('.titleInput').val();
+        
+        // Firebase ref
+        firebase.database().ref("WorkingSpace/" + ideaKey).child("Title").transaction((Title) => {
+            Title = title;
+            $(".titleInput").attr("placeholder", title);
+            $(".titleInput").blur();
+            return Title;
+        });
+    }
+
+    function updateDescription(){
+        // Get new description value;
+        var description = $(".textarea").val();
+
+        // Firebase ref 
+        firebase.database().ref("WorkingSpace/" + ideaKey).child("Description").transaction((Description) => {
+            Description = description;
+            $(".textarea").attr("placeholder", description);
+            $(".textarea").blur();
+            return Description;
+        });
+    }
+
     function addUser(){
+        $("#checkIcon").css("color", "#000000");
+        $("#user").html("");
+        console.log(realUser);
+        if(realUser === true){
+            firebase.database().ref("Users/" + realUID + "/WorkingSpaceKeys").push({
+                Key:ideaKey,
+            });
+
+            firebase.database().ref("WorkingSpace/" + ideaKey).child("Users").transaction((Users) => {
+                Users.push(realUID);
+                return Users;
+            })
+        }
+
+        $("#usersModal").modal("close");
+    }
+
+    function userCheck(){
         // console.log("working");
         var user = $("#user").val();
-        firebase.database().ref("Users/").on("value", (snapshot) => {
+        firebase.database().ref("Users").on("value", (snapshot) => {
             var data = snapshot.val();
-            
+            var key = snapshot.key;
+
+            var x = 0;
             for(var i in data){
                 var name = data[i].Info.FirstName + " " + data[i].Info.LastName;
-                if(user.localeCompare(name)){
-                    console.log(user, name);
+                if(name === user){
+                    $("#checkIcon").css("color", "#FFD43C");
+                    realUser = true;
+                    realUID = Object.keys(data)[x];
+                    console.log(realUser);
+                    return;
+                }else if(name != user){
+                    realUser = false;
+                }else{
+                    return;
                 }
+                x++;
             }
         });
     }
@@ -309,7 +380,7 @@
         var key = $(this).attr("id");
         var checked = $(this).prop("checked");
         
-        firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/Checklist/" + key).child("Checked").transaction((Checked) => {
+        firebase.database().ref("WorkingSpace/" + ideaKey + "/Checklist/" + key).child("Checked").transaction((Checked) => {
             Checked = checked;
             return Checked;
         });
@@ -317,7 +388,7 @@
 
     function groupMessage(){
         var message = $("#message").val();
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/GroupMessages");
+        var ref = firebase.database().ref("WorkingSpace/" + ideaKey + "/GroupMessages");
         ref.push({
             User:uid,
             Message:message,
@@ -331,7 +402,7 @@
 
         firebase.storage().ref("Ideas/" + ideaKey + "/Files/" + file.name).put(file, {contentType:file.type}).then((snapshot) => {
             // console.log(snapshot.metadata.name);
-            firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/FilePaths").push({
+            firebase.database().ref("WorkingSpace/" + ideaKey + "/FilePaths").push({
                 FilePath:snapshot.metadata.fullPath,
                 FileName:snapshot.metadata.name,
             });
@@ -341,7 +412,7 @@
 
     function createChecklistItem(){
         var item = $("#newChecklistItem").val();
-        firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/Checklist").push({
+        firebase.database().ref("WorkingSpace/" + ideaKey + "/Checklist").push({
             ItemName:item,
             Checked:false
         });
@@ -351,7 +422,7 @@
 
     function createNote(){
         var note = $("#newNote").val();
-        firebase.database().ref("Users/" + uid + "/Ideas/" + ideaKey + "/Notes").push({Note:note});
+        firebase.database().ref("WorkingSpace/" + ideaKey + "/Notes").push({Note:note});
         $("#newNote").val("");
         $("#notesModal").modal("close");
     }
@@ -412,7 +483,7 @@
         }
 
         // Get database ref
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas");
+        var ref = firebase.database().ref("WorkingSpace");
         ref.push({
             Title:title,
             Channel:channel,
@@ -425,6 +496,12 @@
                 uid,
             ]
         }).then(function(){
+            ref.once("child_added", (snapshot) => {
+                var key = snapshot.key;
+                firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys").push({
+                    Key:key,
+                });
+            });
             $('#ideaModal').modal();
             $('#ideaModal').modal("close");
         });

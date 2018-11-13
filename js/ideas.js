@@ -12,15 +12,17 @@
     function init(){
         firebase.initializeApp(config);
         // Get all public ideas and append to respective div
-        var publicRef = firebase.database().ref("Users");
-        publicRef.on("child_added", (snapshot) => {
+        var publicRef = firebase.database().ref("WorkingSpace");
+        publicRef.on("value", (snapshot) => {
             var data = snapshot.val();
-            var imgUid = snapshot.key;
+            // console.log(data);
+            var key = snapshot.key;
 
-            for(var i in data.Ideas){
-                var key = Object.keys(data.Ideas)[0];
+            for(var i in data){
+                // console.log(data[i]);
+                // var key = Object.keys(data.Ideas)[0];
                 // console.log(Object.keys(data.Ideas)[0])
-                if(data.Ideas[i].Status === "public"){
+                if(data[i].Status === "public"){
                     // Container div
                     var div = document.createElement("div");
                     div.classList.add("card");
@@ -40,7 +42,7 @@
                     imgDiv.classList.add("imgDiv");
                     creatorDiv.appendChild(imgDiv);
 
-                    var storage = firebase.storage().ref("Users/" + data.Ideas[i].Creator + "/info/profilePhoto");
+                    var storage = firebase.storage().ref("Users/" + data[i].Creator + "/info/profilePhoto");
                     storage.getDownloadURL().then((url) => {
                         // console.log(url);
                         // Creator image
@@ -68,8 +70,13 @@
 
                     // Creator name
                     var name = document.createElement("a");
-                    name.href = "../html/account.html?type=d?uid=" + data;
-                    name.textContent = data.Info.FirstName + " " + data.Info.LastName;
+                    // name.href = "../html/account.html?type=d?uid=" + data;
+                    // console.log(data.Creator);
+                    firebase.database().ref("Users/" + data[i].Creator + "/Info").on("value", (snapshot) => {
+                        var dataTwo = snapshot.val();
+                        // console.log(dataTwo);
+                        name.textContent = dataTwo.FirstName + " " + dataTwo.LastName;
+                    });
                     nameH5.appendChild(name);
                     
                     // Data creation div
@@ -81,7 +88,7 @@
                     var date = document.createElement("p");
                     date.classList.add("col");
                     date.classList.add("m12");
-                    date.textContent = "Idea Created: " + data.Ideas[i].CreationDate;
+                    date.textContent = "Idea Created: " + data[i].CreationDate;
                     creationDiv.appendChild(date);
 
                     // Title div
@@ -101,7 +108,7 @@
                     var title = document.createElement("a");
                     title.src = "#";
                     title.id = "ideaCardTitle"
-                    title.textContent = data.Title;
+                    title.textContent = data[i].Title;
                     titleH5.appendChild(title);
 
                     // Channel h6
@@ -113,7 +120,7 @@
                     // Channel
                     var channel = document.createElement("p");
                     // channel.src = "#";
-                    channel.textContent = data.Ideas[i].Channel;
+                    channel.textContent = data[i].Channel;
                     channelH6.appendChild(channel);
 
                     // Description div
@@ -124,7 +131,7 @@
 
                     // Description
                     var description = document.createElement("p");
-                    description.textContent = data.Ideas[i].Description;
+                    description.textContent = data[i].Description;
                     descriptionDiv.appendChild(description);
 
                     $('.ideas').append(div);

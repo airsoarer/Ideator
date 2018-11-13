@@ -11,7 +11,7 @@
 
     // Get user uid from localStorage
     uid = localStorage.getItem('uid');
-    console.log(uid);
+    // console.log(uid);
 
     // Get date
     var mm = new Date().getMonth();
@@ -20,7 +20,7 @@
     var date = mm + "/" + dd + "/" + yy;
 
     // User image url
-    imageURL;
+    imageURL = undefined;
 
     function init(){
         firebase.initializeApp(config);
@@ -45,56 +45,62 @@
         });
 
         // Pull ideas
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas");
+        var ref = firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys");
         ref.on("child_added", (snapshot) => {
             var data = snapshot.val();
-            var key = snapshot.key;
+            // var key = snapshot.key;
             // console.log(data);
 
-            // Make containing div
-            var div = document.createElement("div");
-            div.classList.add("col");
-            div.classList.add("m10");
-            div.classList.add("offset-m1");
-            div.classList.add("idea")
+            firebase.database().ref("WorkingSpace/" + data.Key).on("value", (snapshot) => {
+                var dataTwo = snapshot.val();
+                var key = snapshot.key;
 
-            // Make title and description div
-            var titleDiv = document.createElement("div");
-            titleDiv.classList.add("col");
-            titleDiv.classList.add("m10");
-            div.appendChild(titleDiv);
+                // Make containing div
+                var div = document.createElement("div");
+                div.classList.add("col");
+                div.classList.add("m10");
+                div.classList.add("offset-m1");
+                div.classList.add("idea")
 
-            // a
-            var a = document.createElement("a");
-            a.href = "../html/working.html?key=" + key;
-            titleDiv.appendChild(a);
+                // Make title and description div
+                var titleDiv = document.createElement("div");
+                titleDiv.classList.add("col");
+                titleDiv.classList.add("m10");
+                div.appendChild(titleDiv);
 
-            // h5
-            var h5 = document.createElement("h5");
-            h5.textContent = data.Title;
-            a.appendChild(h5);
+                // a
+                var a = document.createElement("a");
+                a.href = "../html/working.html?key=" + key;
+                titleDiv.appendChild(a);
 
-            // Make description
-            var description = document.createElement("p");
-            description.textContent = data.Description;
-            titleDiv.appendChild(description);
+                // h5
+                var h5 = document.createElement("h5");
+                h5.textContent = dataTwo.Title;
+                a.appendChild(h5);
 
-            // Make Lights div
-            var lightsDiv = document.createElement("div");
-            lightsDiv.classList.add("col");
-            lightsDiv.classList.add("m2");
-            div.appendChild(lightsDiv);
+                // Make description
+                var description = document.createElement("p");
+                description.textContent = dataTwo.Description;
+                titleDiv.appendChild(description);
 
-            // Make light h5
-            var lights = document.createElement("h5");
-            if(data.Lights === 1){
-                lights.textContent = data.Lights + " Light"
-            }else{
-                lights.textContent = data.Lights + " Lights";
-            }
-            lightsDiv.appendChild(lights);
+                // Make Lights div
+                var lightsDiv = document.createElement("div");
+                lightsDiv.classList.add("col");
+                lightsDiv.classList.add("m2");
+                div.appendChild(lightsDiv);
 
-            $(".ideas").append(div);
+                // Make light h5
+                var lights = document.createElement("h5");
+                if(dataTwo.Lights === 1){
+                    lights.textContent = dataTwo.Lights + " Light"
+                }else{
+                    lights.textContent = dataTwo.Lights + " Lights";
+                }
+
+                lightsDiv.appendChild(lights);
+
+                $(".ideas").append(div);
+            });
         });
 
         // Get Catagories
@@ -192,7 +198,7 @@
         // var publicRef = firebase.database().ref("Ideas");
 
         // Get database ref
-        var ref = firebase.database().ref("Users/" + uid + "/Ideas");
+        var ref = firebase.database().ref("WorkingSpace");
         ref.push({
             Title:title,
             Channel:channel,
@@ -205,6 +211,12 @@
                 uid,
             ]
         }).then(function(){
+            ref.once("child_added", (snapshot) => {
+                var key = snapshot.key;
+                firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys").push({
+                    Key:key,
+                });
+            });
             $('#ideaModal').modal();
             $('#ideaModal').modal("close");
         });
