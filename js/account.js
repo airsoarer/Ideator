@@ -50,6 +50,21 @@
                 $("#followersSpan").text(followers);
             });
 
+            // Check if following
+            let ref2 = firebase.database().ref("Users/" + id + "/Info/Followers");
+            ref2.on("value", (snapshot) => {
+                let data = snapshot.val();
+                
+                for(let i = 0; i < data.length; i++){
+                    if(uid === data[i]){
+                        $(".follow").prop("disabled", true);
+                        $(".follow").css("background-color", "#FFD43C");
+                        $(".follow").css("color", "#FFFFFF");
+                        $(".follow").css("cursor", "text");
+                    }
+                }
+            });
+
             // Get user photo and put in respective div
             var storageRef = firebase.storage().ref("Users/" + id + "/info/profilePhoto");
             storageRef.getDownloadURL().then((url) => {
@@ -288,12 +303,28 @@
         $(this).css("background-color", "#FFD43C");
         $(this).css("color", "#FFFFFF");
 
-        firebase.database().ref("Users/" + id + "/Info").child("Followers").transaction((Followers) => {
-            console.log(Followers);
-            firebase.database().ref("Users/" + uid + "/Info/Following").child("Users").transaction((Users) => {
-                console.log(Users);
-            });
+        firebase.database().ref("Users/" + uid + "/Info/Following/Users").once("value", (snapshot) => {
+            var data = snapshot.val();
+            data.push(id);
+            // console.log(data);
+
+            firebase.database().ref("Users/" + uid + "/Info/Following/Users").set(data);
         });
+
+        firebase.database().ref("Users/" + id + "/Info/Followers").once("value", (snapshot2) => {
+            var dataTwo = snapshot2.val();
+            dataTwo.push(uid);
+            // console.log(dataTwo);
+            
+            firebase.database().ref("Users/" + id + '/Info/Followers').set(dataTwo);
+        });
+
+        // firebase.database().ref("Users/" + id + "/Info").child("Followers").transaction((Followers) => {
+        //     console.log(Followers);
+        //     firebase.database().ref("Users/" + uid + "/Info/Following").child("Users").transaction((Users) => {
+        //         console.log(Users);
+        //     });
+        // });
     }
 
     function update(){
