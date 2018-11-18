@@ -288,23 +288,12 @@
         $(this).css("background-color", "#FFD43C");
         $(this).css("color", "#FFFFFF");
 
-        firebase.database().ref("Users/" + uid + "/Info/Following/Users").on("value", (snapshot) => {
-            var data = snapshot.val();
-            data.push(id);
-            // console.log(data);
-        });
-
-        firebase.database().ref("Users/" + id + "/Info/Following").child("Users").transaction((Users) => {
+        firebase.database().ref("Users/" + uid + "/Info/Following").child("Users").transaction((Users) => {
             console.log(Users);
-
-            firebase.database().ref("Users/" + uid + "/Info").child("Followers").transaction((Followers) => {
+            firebase.database().ref("Users/" + id + "/Info").child("Following").transaction((Followers) => {
                 console.log(Followers);
             });
         });
-
-        // firebase.database().ref("Users/" + uid + "/Info").child("Followers").transaction((Followers) => {
-        //     console.log(Followers);
-        // });
     }
 
     function update(){

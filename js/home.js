@@ -106,7 +106,7 @@
                     name.href = "../html/account.html?type=d?uid=" + data.Creator;
                     firebase.database().ref("Users/" + data.Creator + "/Info").on("value", (snapshot) => {
                         var dataTwo = snapshot.val();
-                        console.log(dataTwo);
+                        // console.log(dataTwo);
                         name.textContent = dataTwo.FirstName + " " + dataTwo.LastName;
                     });
                     nameH5.appendChild(name);
@@ -246,7 +246,7 @@
         var ref = firebase.database().ref('Users/' + uid + "/WorkingSpaceKeys");
         ref.on('child_added', function(snapshot){
             var data = snapshot.val();
-            // console.log(data.Key);
+            console.log(data.Key);
             // var key = snapshot.key;
 
             if(!data){
@@ -255,6 +255,7 @@
 
             firebase.database().ref("WorkingSpace/" + data.Key).on("value", (snapshot) => {
                 var data = snapshot.val();
+                // console.log(data); 
                 var key = snapshot.key;
 
                 // Container div
@@ -859,8 +860,9 @@
                 uid,
             ]
         }).then(function(){
-            ref.once("child_added", (snapshot) => {
+            ref.limitToLast(1).once("child_added", (snapshot) => {
                 var key = snapshot.key;
+                console.log(key);
                 firebase.database().ref("Users/" + uid + "/WorkingSpaceKeys").push({
                     Key:key,
                 });
