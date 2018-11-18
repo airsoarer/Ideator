@@ -1,0 +1,23 @@
+hitrecord.org
+Meetup.com talk to mateo about
+catchafire.com
+
+Ability to say that you need help or are asking for help with the project. 
+Take a look at front quotes
+Voting system - feeling after putting ideas out - waht to do with feedback
+Looking for help tag
+Willing to help 
+SPonsers
+Hone in on the collaboration aspect
+Make it a friendly site to share ide3as
+
+IDEAS:
+Jsut thumbs up and comments
+Take out last phrase on landing
+
+
+THINGS TO IMPLEMENT:
+- Taking off thumbs down and jsut having thumbs up and comments
+- Take off the last point or change last point on landing page
+- Tags - Ideator, Looking for help, Willing to help
+- Contact???

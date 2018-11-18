@@ -288,10 +288,10 @@
         $(this).css("background-color", "#FFD43C");
         $(this).css("color", "#FFFFFF");
 
-        firebase.database().ref("Users/" + uid + "/Info/Following").child("Users").transaction((Users) => {
-            console.log(Users);
-            firebase.database().ref("Users/" + id + "/Info").child("Following").transaction((Followers) => {
-                console.log(Followers);
+        firebase.database().ref("Users/" + id + "/Info").child("Followers").transaction((Followers) => {
+            console.log(Followers);
+            firebase.database().ref("Users/" + uid + "/Info/Following").child("Users").transaction((Users) => {
+                console.log(Users);
             });
         });
     }
