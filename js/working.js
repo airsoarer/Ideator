@@ -170,9 +170,18 @@
                 // Create Div
                 var div = document.createElement("div");
                 div.classList.add("col");
+                div.classList.add("s12");
                 div.classList.add("m3");
                 // div.classList.add("offset-m1");
-                div.classList.add("file");
+                // div.classList.add("file");
+
+                let temp = document.createElement("div");
+                temp.classList.add("col");
+                temp.classList.add("s12");
+                temp.classList.add("m12");
+                temp.classList.add("offset-m1");
+                temp.classList.add("file");
+                div.appendChild(temp);
 
                 // file icon
                 var i = document.createElement("i");
@@ -181,7 +190,7 @@
                 i.classList.add("material-icons");
                 i.classList.add("small");
                 i.textContent = "insert_drive_file";
-                div.appendChild(i);
+                temp.appendChild(i);
 
                 // a
                 var a = document.createElement("a");
@@ -191,7 +200,7 @@
                 a.classList.add("col");
                 a.classList.add("m9");
                 a.classList.add("truncate");
-                div.appendChild(a);
+                temp.appendChild(a);
 
                 $(".files").append(div);
             });
